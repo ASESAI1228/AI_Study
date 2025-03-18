@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLMの概要と仕組み - 法務AIナビゲーター by LegalTorch</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">ホーム</a></li>
+                    <li><a href="../../about.html">会社案内</a></li>
+                    <li><a href="../../program.html">研修プログラム</a></li>
+                    <li><a href="../../contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>LLMの概要と仕組み</h1>
+            <div class="breadcrumbs">
+                <a href="../../index.html">ホーム</a> &gt; 
+                <a href="../../program.html">研修プログラム</a> &gt; 
+                <a href="../index.html">第1段階：AI基礎研修</a> &gt; 
+                <span>LLMの概要と仕組み</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="slide-navigation">
+                <a href="1-2-ai-concepts.html" class="prev-slide"><i class="fas fa-chevron-left"></i> 前のスライド</a>
+                <a href="1-4-prompt-engineering.html" class="next-slide">次のスライド <i class="fas fa-chevron-right"></i></a>
+            </div>
+
+            <div class="slide-content">
+                <h2>大規模言語モデル（LLM）とは</h2>
+                <ul>
+                    <li>膨大なテキストデータから学習した言語処理AI</li>
+                    <li>特徴：
+                        <ul>
+                            <li>大量のパラメータ（数十億〜数兆）</li>
+                            <li>自己回帰的な文章生成能力</li>
+                            <li>多様なタスクへの適応性（few-shot learning）</li>
+                        </ul>
+                    </li>
+                    <li>代表例：GPT-4、Claude、Gemini、Llama 2など</li>
+                </ul>
+
+                <h2>Transformerアーキテクチャ</h2>
+                <ul>
+                    <li>2017年にGoogleが発表した「Attention is All You Need」論文で提案</li>
+                    <li>特徴：
+                        <ul>
+                            <li>Self-Attentionメカニズム：文脈の長距離依存関係を捉える</li>
+                            <li>並列処理が可能：学習の高速化</li>
+                            <li>エンコーダー・デコーダー構造</li>
+                        </ul>
+                    </li>
+                    <li>現代のLLMの基盤技術</li>
+                </ul>
+
+                <h2>LLMの学習プロセス</h2>
+                <h3>1. 事前学習（Pre-training）</h3>
+                <ul>
+                    <li>インターネット上の膨大なテキストデータを使用</li>
+                    <li>自己教師あり学習：次の単語を予測するタスク</li>
+                    <li>言語の統計的パターンと知識を獲得</li>
+                </ul>
+
+                <h3>2. ファインチューニング（Fine-tuning）</h3>
+                <ul>
+                    <li>特定のタスクや領域向けに調整</li>
+                    <li>人間のフィードバックによる強化学習（RLHF）</li>
+                    <li>安全性、有用性、誠実さの向上</li>
+                </ul>
+
+                <h2>トークン化と生成プロセス</h2>
+                <h3>トークン化（Tokenization）</h3>
+                <ul>
+                    <li>テキストを小さな単位（トークン）に分割</li>
+                    <li>単語、部分単語、文字などの単位</li>
+                    <li>例：「こんにちは」→「こん」「にち」「は」</li>
+                    <li>トークン数の制限がコンテキストウィンドウを決定</li>
+                </ul>
+
+                <h3>生成プロセス</h3>
+                <ul>
+                    <li>入力（プロンプト）を受け取り、トークン化</li>
+                    <li>次のトークンの確率分布を計算</li>
+                    <li>サンプリング方法（温度、top-p、top-kなど）で次のトークンを選択</li>
+                    <li>選択したトークンを出力に追加し、次のトークン予測の入力とする</li>
+                    <li>停止条件（最大長、特定のトークン）まで繰り返し</li>
+                </ul>
+
+                <h2>LLMの能力と限界</h2>
+                <h3>能力</h3>
+                <ul>
+                    <li>自然な文章生成と対話</li>
+                    <li>多様な知識の保持と活用</li>
+                    <li>コンテキスト理解と一貫性のある応答</li>
+                    <li>多言語対応</li>
+                </ul>
+
+                <h3>限界</h3>
+                <ul>
+                    <li>幻覚（Hallucination）：事実と異なる情報の生成</li>
+                    <li>最新情報の欠如：学習データの時点までの知識</li>
+                    <li>推論能力の制約：複雑な数学的・論理的推論の限界</li>
+                    <li>バイアスの存在：学習データに含まれる偏見の反映</li>
+                </ul>
+
+                <h2>法務分野でのLLM活用</h2>
+                <ul>
+                    <li>文書生成：契約書ドラフト、法的文書の作成支援</li>
+                    <li>情報抽出：契約書から重要条項の抽出</li>
+                    <li>質問応答：法的質問への回答支援</li>
+                    <li>要約：判例や長文法律文書の要約</li>
+                </ul>
+
+                <h2>次回予告：プロンプトエンジニアリング入門</h2>
+                <ul>
+                    <li>効果的なプロンプトの書き方</li>
+                    <li>コンテキスト設定の重要性</li>
+                    <li>一貫性のある指示の出し方</li>
+                </ul>
+            </div>
+
+            <div class="slide-navigation">
+                <a href="1-2-ai-concepts.html" class="prev-slide"><i class="fas fa-chevron-left"></i> 前のスライド</a>
+                <a href="1-4-prompt-engineering.html" class="next-slide">次のスライド <i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+                    <p>法務業務の未来を照らす</p>
+                </div>
+                <div class="footer-links">
+                    <h4>リンク</h4>
+                    <ul>
+                        <li><a href="../../index.html">ホーム</a></li>
+                        <li><a href="../../about.html">会社案内</a></li>
+                        <li><a href="../../program.html">研修プログラム</a></li>
+                        <li><a href="../../contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>お問い合わせ</h4>
+                    <p>〒170-6033<br>東京都豊島区東池袋3-1-1<br>サンシャイン60</p>
+                    <p>TEL: 03-1234-5678<br>Email: info@legaltorch.co.jp</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 法務AIナビゲーター by LegalTorch All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

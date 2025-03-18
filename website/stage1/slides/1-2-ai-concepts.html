@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI・機械学習の基本概念 - 法務AIナビゲーター by LegalTorch</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">ホーム</a></li>
+                    <li><a href="../../about.html">会社案内</a></li>
+                    <li><a href="../../program.html">研修プログラム</a></li>
+                    <li><a href="../../contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>AI・機械学習の基本概念</h1>
+            <div class="breadcrumbs">
+                <a href="../../index.html">ホーム</a> &gt; 
+                <a href="../../program.html">研修プログラム</a> &gt; 
+                <a href="../index.html">第1段階：AI基礎研修</a> &gt; 
+                <span>AI・機械学習の基本概念</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="slide-navigation">
+                <a href="1-1-introduction.html" class="prev-slide"><i class="fas fa-chevron-left"></i> 前のスライド</a>
+                <a href="1-3-llm-overview.html" class="next-slide">次のスライド <i class="fas fa-chevron-right"></i></a>
+            </div>
+
+            <div class="slide-content">
+                <h2>機械学習とは</h2>
+                <ul>
+                    <li>データから学習し、明示的にプログラムされていなくてもパターンを認識し予測を行う技術</li>
+                    <li>人間が明示的なルールを設定するのではなく、データから自動的にルールを学習</li>
+                    <li>AIの中核技術の一つ</li>
+                </ul>
+
+                <h2>機械学習の種類</h2>
+                <h3>1. 教師あり学習</h3>
+                <ul>
+                    <li>入力と正解（ラベル）のペアを使って学習</li>
+                    <li>例：メールスパム分類、画像認識、不動産価格予測</li>
+                    <li>主な手法：
+                        <ul>
+                            <li>回帰分析：連続値を予測（例：価格予測）</li>
+                            <li>分類：カテゴリを予測（例：スパム/非スパム）</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>2. 教師なし学習</h3>
+                <ul>
+                    <li>正解ラベルなしでデータのパターンを発見</li>
+                    <li>例：顧客セグメンテーション、異常検知</li>
+                    <li>主な手法：
+                        <ul>
+                            <li>クラスタリング：類似データのグループ化</li>
+                            <li>次元削減：データの特徴を少ない変数で表現</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>3. 強化学習</h3>
+                <ul>
+                    <li>試行錯誤と報酬に基づいて最適な行動を学習</li>
+                    <li>例：ゲームAI、自動運転、ロボット制御</li>
+                    <li>環境との相互作用を通じて方針を改善</li>
+                </ul>
+
+                <h2>ディープラーニング</h2>
+                <ul>
+                    <li>多層のニューラルネットワークを用いた機械学習手法</li>
+                    <li>特徴：
+                        <ul>
+                            <li>自動的な特徴抽出能力</li>
+                            <li>大量のデータと計算リソースが必要</li>
+                            <li>複雑なパターン認識に優れる</li>
+                        </ul>
+                    </li>
+                    <li>応用例：
+                        <ul>
+                            <li>画像認識・生成（CNN）</li>
+                            <li>自然言語処理（RNN、Transformer）</li>
+                            <li>音声認識・合成</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h2>自然言語処理（NLP）</h2>
+                <ul>
+                    <li>コンピュータが人間の言語を理解・生成する技術</li>
+                    <li>主要タスク：
+                        <ul>
+                            <li>テキスト分類（感情分析、トピック分類）</li>
+                            <li>情報抽出（固有表現抽出、関係抽出）</li>
+                            <li>機械翻訳</li>
+                            <li>質問応答</li>
+                            <li>文書要約</li>
+                            <li>対話システム</li>
+                        </ul>
+                    </li>
+                    <li>発展の歴史：
+                        <ul>
+                            <li>ルールベース → 統計的手法 → ニューラルネットワーク → 大規模言語モデル</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h2>法務分野での機械学習応用</h2>
+                <ul>
+                    <li>文書分類：契約書の種類分類、条項の分類</li>
+                    <li>情報抽出：契約書から重要条項や日付の抽出</li>
+                    <li>類似文書検索：類似判例や先例の検索</li>
+                    <li>予測モデル：訴訟結果予測、リスク評価</li>
+                </ul>
+
+                <h2>次回予告：LLMの概要と仕組み</h2>
+                <ul>
+                    <li>大規模言語モデルとは</li>
+                    <li>Transformerアーキテクチャ</li>
+                    <li>事前学習とファインチューニング</li>
+                    <li>トークン化と生成プロセス</li>
+                </ul>
+            </div>
+
+            <div class="slide-navigation">
+                <a href="1-1-introduction.html" class="prev-slide"><i class="fas fa-chevron-left"></i> 前のスライド</a>
+                <a href="1-3-llm-overview.html" class="next-slide">次のスライド <i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+                    <p>法務業務の未来を照らす</p>
+                </div>
+                <div class="footer-links">
+                    <h4>リンク</h4>
+                    <ul>
+                        <li><a href="../../index.html">ホーム</a></li>
+                        <li><a href="../../about.html">会社案内</a></li>
+                        <li><a href="../../program.html">研修プログラム</a></li>
+                        <li><a href="../../contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>お問い合わせ</h4>
+                    <p>〒170-6033<br>東京都豊島区東池袋3-1-1<br>サンシャイン60</p>
+                    <p>TEL: 03-1234-5678<br>Email: info@legaltorch.co.jp</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 法務AIナビゲーター by LegalTorch All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

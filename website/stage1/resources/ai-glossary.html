@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI用語集 - 法務AIナビゲーター by LegalTorch</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .glossary-search {
+            margin-bottom: 2rem;
+        }
+        
+        .glossary-search input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .glossary-section {
+            margin-bottom: 3rem;
+        }
+        
+        .glossary-list {
+            margin-left: 1rem;
+        }
+        
+        .glossary-list dt {
+            font-weight: bold;
+            margin-top: 1rem;
+            color: #2c3e50;
+        }
+        
+        .glossary-list dd {
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .highlight {
+            background-color: #ffff99;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">ホーム</a></li>
+                    <li><a href="../../about.html">会社案内</a></li>
+                    <li><a href="../../program.html">研修プログラム</a></li>
+                    <li><a href="../../contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>AI用語集</h1>
+            <div class="breadcrumbs">
+                <a href="../../index.html">ホーム</a> &gt; 
+                <a href="../../program.html">研修プログラム</a> &gt; 
+                <a href="../index.html">第1段階：AI基礎研修</a> &gt; 
+                <span>AI用語集</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="glossary-content">
+                <div class="glossary-search">
+                    <input type="text" id="glossarySearch" placeholder="用語を検索...">
+                </div>
+
+                <div class="glossary-section">
+                    <h2>基本概念</h2>
+                    <dl class="glossary-list" id="basic-concepts">
+                        <dt>人工知能（AI）</dt>
+                        <dd>人間の知能を模倣し、学習・推論・問題解決を行うコンピュータシステム</dd>
+                        
+                        <dt>機械学習（ML）</dt>
+                        <dd>データから学習し、明示的にプログラムされていなくてもパターンを認識し予測を行う技術</dd>
+                        
+                        <dt>深層学習（Deep Learning）</dt>
+                        <dd>多層のニューラルネットワークを用いた機械学習の一種</dd>
+                        
+                        <dt>ニューラルネットワーク</dt>
+                        <dd>人間の脳の神経細胞（ニューロン）の働きを模倣した数学モデル</dd>
+                        
+                        <dt>生成AI</dt>
+                        <dd>テキスト、画像、音声などの新しいコンテンツを生成できるAI技術</dd>
+                    </dl>
+                </div>
+
+                <div class="glossary-section">
+                    <h2>言語モデル関連</h2>
+                    <dl class="glossary-list" id="language-models">
+                        <dt>言語モデル（LM）</dt>
+                        <dd>単語の並びの確率を計算するモデル</dd>
+                        
+                        <dt>大規模言語モデル（LLM）</dt>
+                        <dd>大量のテキストデータで学習された巨大な言語モデル</dd>
+                        
+                        <dt>トークン</dt>
+                        <dd>LLMが処理する最小単位の文字列（単語や単語の一部）</dd>
+                        
+                        <dt>トークン化（Tokenization）</dt>
+                        <dd>テキストをトークンに分割するプロセス</dd>
+                        
+                        <dt>埋め込み（Embedding）</dt>
+                        <dd>テキストを数値ベクトルに変換する技術</dd>
+                        
+                        <dt>ファインチューニング</dt>
+                        <dd>事前学習済みモデルを特定のタスク向けに調整すること</dd>
+                        
+                        <dt>プロンプト</dt>
+                        <dd>AIモデルに与える指示や質問</dd>
+                        
+                        <dt>プロンプトエンジニアリング</dt>
+                        <dd>効果的なプロンプトを設計する技術</dd>
+                        
+                        <dt>コンテキストウィンドウ</dt>
+                        <dd>LLMが一度に処理できるトークンの最大数</dd>
+                        
+                        <dt>幻覚（Hallucination）</dt>
+                        <dd>AIが事実に基づかない情報を生成すること</dd>
+                        
+                        <dt>温度（Temperature）</dt>
+                        <dd>生成テキストのランダム性を制御するパラメータ</dd>
+                        
+                        <dt>トップP/トップK</dt>
+                        <dd>生成時に考慮する確率分布の範囲を制限するパラメータ</dd>
+                    </dl>
+                </div>
+
+                <div class="glossary-section">
+                    <h2>主要なモデルとサービス</h2>
+                    <dl class="glossary-list" id="models-services">
+                        <dt>GPT（Generative Pre-trained Transformer）</dt>
+                        <dd>OpenAIが開発した生成型言語モデル</dd>
+                        
+                        <dt>ChatGPT</dt>
+                        <dd>OpenAIのGPTモデルを用いた対話型AIサービス</dd>
+                        
+                        <dt>GPT-4</dt>
+                        <dd>OpenAIの第4世代GPTモデル</dd>
+                        
+                        <dt>Gemini</dt>
+                        <dd>Googleが開発した大規模言語モデル</dd>
+                        
+                        <dt>Claude</dt>
+                        <dd>Anthropicが開発した大規模言語モデル</dd>
+                        
+                        <dt>BERT</dt>
+                        <dd>Googleが開発した双方向エンコーダー表現</dd>
+                        
+                        <dt>Stable Diffusion</dt>
+                        <dd>画像生成AI</dd>
+                        
+                        <dt>DALL-E</dt>
+                        <dd>OpenAIの画像生成AI</dd>
+                    </dl>
+                </div>
+
+                <div class="glossary-section">
+                    <h2>応用技術</h2>
+                    <dl class="glossary-list" id="applied-tech">
+                        <dt>RAG（検索拡張生成）</dt>
+                        <dd>外部知識源から情報を検索し、生成に活用する技術</dd>
+                        
+                        <dt>エージェント</dt>
+                        <dd>特定のタスクを自律的に実行するAIシステム</dd>
+                        
+                        <dt>マルチモーダルAI</dt>
+                        <dd>テキスト、画像、音声など複数の形式のデータを処理できるAI</dd>
+                        
+                        <dt>ゼロショット学習</dt>
+                        <dd>事前の例示なしでタスクを実行する能力</dd>
+                        
+                        <dt>フューショット学習</dt>
+                        <dd>少数の例示からタスクを学習する能力</dd>
+                        
+                        <dt>チェーン・オブ・ソート</dt>
+                        <dd>複雑な問題を段階的に考えるようAIに促す手法</dd>
+                    </dl>
+                </div>
+
+                <div class="glossary-section">
+                    <h2>法務AI関連</h2>
+                    <dl class="glossary-list" id="legal-ai">
+                        <dt>法的文書分析</dt>
+                        <dd>契約書や法律文書をAIで分析する技術</dd>
+                        
+                        <dt>法的リサーチ支援</dt>
+                        <dd>判例や法令の検索・分析をAIで支援する技術</dd>
+                        
+                        <dt>契約書レビュー</dt>
+                        <dd>契約書の自動チェックや分析を行う技術</dd>
+                        
+                        <dt>法的質問応答</dt>
+                        <dd>法的質問に対して回答を生成する技術</dd>
+                        
+                        <dt>リーガルテック</dt>
+                        <dd>法務業務を効率化・高度化するための技術</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+                    <p>法務業務の未来を照らす</p>
+                </div>
+                <div class="footer-links">
+                    <h4>リンク</h4>
+                    <ul>
+                        <li><a href="../../index.html">ホーム</a></li>
+                        <li><a href="../../about.html">会社案内</a></li>
+                        <li><a href="../../program.html">研修プログラム</a></li>
+                        <li><a href="../../contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>お問い合わせ</h4>
+                    <p>〒170-6033<br>東京都豊島区東池袋3-1-1<br>サンシャイン60</p>
+                    <p>TEL: 03-1234-5678<br>Email: info@legaltorch.co.jp</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 法務AIナビゲーター by LegalTorch All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('glossarySearch');
+            const allTerms = document.querySelectorAll('.glossary-list dt, .glossary-list dd');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                if (searchTerm.length < 1) {
+                    // Reset all terms to visible and remove highlights
+                    allTerms.forEach(term => {
+                        term.style.display = '';
+                        term.innerHTML = term.innerHTML.replace(/<span class="highlight">(.+?)<\/span>/g, '$1');
+                    });
+                    return;
+                }
+                
+                allTerms.forEach(term => {
+                    const termText = term.textContent.toLowerCase();
+                    const isDefinition = term.tagName === 'DD';
+                    const correspondingTerm = isDefinition ? term.previousElementSibling : term.nextElementSibling;
+                    
+                    if (termText.includes(searchTerm)) {
+                        term.style.display = '';
+                        correspondingTerm.style.display = '';
+                        
+                        // Highlight the matching text
+                        const regex = new RegExp(`(${searchTerm})`, 'gi');
+                        term.innerHTML = term.textContent.replace(regex, '<span class="highlight">$1</span>');
+                    } else if (correspondingTerm && correspondingTerm.textContent.toLowerCase().includes(searchTerm)) {
+                        term.style.display = '';
+                    } else {
+                        term.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

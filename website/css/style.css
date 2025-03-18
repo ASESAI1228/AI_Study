@@ -950,3 +950,436 @@ footer {
         padding: 0 20px;
     }
 }
+
+/* Stage 1 Content Styles */
+.content-section {
+    padding: 60px 0;
+    background-color: var(--light-color);
+}
+
+.content-section .container {
+    max-width: 1000px;
+}
+
+/* Slide Navigation */
+.slide-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.slide-navigation a {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.slide-navigation a:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.slide-navigation a.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.slide-navigation a.disabled:hover {
+    transform: none;
+}
+
+.slide-navigation .prev-slide i {
+    margin-right: 8px;
+}
+
+.slide-navigation .next-slide i {
+    margin-left: 8px;
+}
+
+/* Slide Content */
+.slide-content {
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.slide-content h2 {
+    color: var(--primary-color);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+}
+
+.slide-content h2:first-child {
+    margin-top: 0;
+}
+
+.slide-content h3 {
+    color: var(--primary-color);
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.slide-content p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.slide-content ul, 
+.slide-content ol {
+    margin-bottom: 20px;
+    padding-left: 25px;
+}
+
+.slide-content li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.slide-content strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.slide-content code {
+    background-color: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+    color: #d63384;
+}
+
+.slide-content pre {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+}
+
+.slide-content pre code {
+    background-color: transparent;
+    padding: 0;
+    color: var(--text-color);
+    display: block;
+    line-height: 1.5;
+}
+
+/* Exercise Content */
+.exercise-content {
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.exercise-section {
+    margin-bottom: 40px;
+}
+
+.exercise-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+}
+
+.exercise-steps {
+    margin-bottom: 30px;
+}
+
+.exercise-step {
+    margin-bottom: 25px;
+    padding-left: 20px;
+    border-left: 3px solid var(--secondary-color);
+}
+
+.exercise-step h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.exercise-note {
+    background-color: rgba(78, 205, 196, 0.1);
+    border-left: 4px solid var(--secondary-color);
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.exercise-tip {
+    background-color: rgba(247, 183, 51, 0.1);
+    border-left: 4px solid var(--accent-color);
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.exercise-warning {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-left: 4px solid #dc3545;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.code-example {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    position: relative;
+}
+
+.code-example pre {
+    margin: 0;
+    overflow-x: auto;
+}
+
+.code-example-title {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 2px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Glossary Styles */
+.glossary-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.glossary-search {
+    margin-bottom: 30px;
+}
+
+.glossary-search input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.glossary-search input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+}
+
+.glossary-list {
+    margin-top: 30px;
+}
+
+.glossary-category {
+    margin-bottom: 40px;
+}
+
+.glossary-category h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+}
+
+.glossary-term {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.glossary-term:last-child {
+    border-bottom: none;
+}
+
+.glossary-term h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+}
+
+.glossary-term h3 .term-jp {
+    margin-left: 10px;
+    font-size: 1rem;
+    color: #666;
+}
+
+.glossary-term p {
+    line-height: 1.7;
+}
+
+/* Stage Landing Page */
+.stage-landing {
+    padding: 60px 0;
+}
+
+.stage-landing-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.stage-landing-header h1 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+}
+
+.stage-landing-header p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.curriculum-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.curriculum-card {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.curriculum-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.curriculum-card-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #2a4a7f 100%);
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+
+.curriculum-card-header h3 {
+    color: white;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.curriculum-card-header p {
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.curriculum-card-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.curriculum-card-body p {
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.curriculum-card-footer {
+    padding: 0 20px 20px;
+    text-align: right;
+}
+
+.stage-cta {
+    margin-top: 20px;
+}
+
+.breadcrumbs {
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.breadcrumbs a {
+    color: white;
+    margin: 0 5px;
+}
+
+.breadcrumbs a:hover {
+    color: var(--secondary-color);
+}
+
+.breadcrumbs span {
+    margin-left: 5px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .slide-content,
+    .exercise-content,
+    .glossary-container {
+        padding: 25px;
+    }
+    
+    .slide-navigation {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .slide-navigation a {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .curriculum-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stage-landing-header h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .slide-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .slide-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .exercise-step h3,
+    .glossary-term h3 {
+        font-size: 1.2rem;
+    }
+    
+    .code-example {
+        padding: 15px;
+    }
+}
