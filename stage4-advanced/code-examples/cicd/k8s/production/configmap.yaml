@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: production
+data:
+  db_host: "legal-app-db.cxyz123abc.ap-northeast-1.rds.amazonaws.com"
+  db_name: "legaldb"
+  db_user: "postgres"
+  environment: "production"
+  log_level: "info" 

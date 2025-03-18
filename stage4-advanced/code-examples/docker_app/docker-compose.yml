@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_NAME=legaldb
+      - DB_USER=postgres
+      - DB_PASS=password
+  
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=legaldb
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data: 
