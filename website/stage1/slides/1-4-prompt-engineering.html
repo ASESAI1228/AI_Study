@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロンプトエンジニアリング入門 - 法務AIナビゲーター by LegalTorch</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">ホーム</a></li>
+                    <li><a href="../../about.html">会社案内</a></li>
+                    <li><a href="../../program.html">研修プログラム</a></li>
+                    <li><a href="../../contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>プロンプトエンジニアリング入門</h1>
+            <div class="breadcrumbs">
+                <a href="../../index.html">ホーム</a> &gt; 
+                <a href="../../program.html">研修プログラム</a> &gt; 
+                <a href="../index.html">第1段階：AI基礎研修</a> &gt; 
+                <span>プロンプトエンジニアリング入門</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="slide-navigation">
+                <a href="1-3-llm-overview.html" class="prev-slide"><i class="fas fa-chevron-left"></i> 前のスライド</a>
+                <a href="1-5-ai-services.html" class="next-slide">次のスライド <i class="fas fa-chevron-right"></i></a>
+            </div>
+
+            <div class="slide-content">
+                <h2>プロンプトエンジニアリングとは</h2>
+                <ul>
+                    <li>AIに対して効果的な指示を出すための技術・方法論</li>
+                    <li>目的：AIから望ましい回答や成果物を得るための入力設計</li>
+                    <li>重要性：
+                        <ul>
+                            <li>同じ質問でも表現方法で回答が大きく変わる</li>
+                            <li>AIの能力を最大限に引き出すための鍵</li>
+                            <li>法務業務の効率化・品質向上に直結</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h2>効果的なプロンプトの基本要素</h2>
+                <h3>1. 明確な指示</h3>
+                <ul>
+                    <li>具体的なタスクや目的を明示</li>
+                    <li>曖昧さを排除した表現</li>
+                    <li>例：「契約書を要約して」→「この賃貸借契約書の主要条件を5つのポイントで要約してください」</li>
+                </ul>
+
+                <h3>2. コンテキスト設定</h3>
+                <ul>
+                    <li>背景情報の提供</li>
+                    <li>AIに役割を与える</li>
+                    <li>例：「あなたは企業法務の専門家として、以下の契約条項の問題点を指摘してください」</li>
+                </ul>
+
+                <h3>3. 出力形式の指定</h3>
+                <ul>
+                    <li>回答の構造や形式を明示</li>
+                    <li>例：「箇条書きで」「表形式で」「法的リスクを高・中・低で評価して」</li>
+                </ul>
+
+                <h3>4. 制約条件の設定</h3>
+                <ul>
+                    <li>文字数や専門性レベルの指定</li>
+                    <li>例：「300字以内で」「法律の専門家ではない人にもわかるように」</li>
+                </ul>
+
+                <h2>プロンプトパターン</h2>
+                <h3>1. ロールプロンプト</h3>
+                <ul>
+                    <li>AIに特定の役割を与える</li>
+                    <li>例：「あなたは知的財産権の専門弁護士です。以下の特許明細書を分析し...」</li>
+                    <li>効果：専門的な視点からの回答を引き出せる</li>
+                </ul>
+
+                <h3>2. ステップバイステップ</h3>
+                <ul>
+                    <li>複雑なタスクを段階的に指示</li>
+                    <li>例：「以下の手順で契約書を分析してください。1.当事者の義務を特定 2.リスク条項を抽出...」</li>
+                    <li>効果：構造化された詳細な回答を得られる</li>
+                </ul>
+
+                <h3>3. フォーマット指定</h3>
+                <ul>
+                    <li>出力形式を明示的に指定</li>
+                    <li>例：「以下の形式でレポートを作成してください：概要/リスク分析/推奨事項」</li>
+                    <li>効果：一貫性のある構造化された回答を得られる</li>
+                </ul>
+
+                <h3>4. フューショット（Few-shot）学習</h3>
+                <ul>
+                    <li>例を示してから同様のタスクを依頼</li>
+                    <li>例：「以下は良い契約書要約の例です：[例]。この形式に従って次の契約書を要約してください」</li>
+                    <li>効果：AIが例から学習し、期待通りの形式で回答する</li>
+                </ul>
+
+                <h2>法務業務向けプロンプト作成のコツ</h2>
+                <h3>1. 専門用語の適切な使用</h3>
+                <ul>
+                    <li>法律用語を正確に使用</li>
+                    <li>必要に応じて定義を含める</li>
+                    <li>例：「『重大な契約違反』とは、本契約の目的達成を著しく妨げる違反を指します」</li>
+                </ul>
+
+                <h3>2. 法的文脈の明確化</h3>
+                <ul>
+                    <li>適用法域の指定（日本法、米国法など）</li>
+                    <li>関連法令や判例の言及</li>
+                    <li>例：「日本の会社法に基づいて、以下の株主総会議事録の問題点を指摘してください」</li>
+                </ul>
+
+                <h3>3. 倫理的・法的制約の認識</h3>
+                <ul>
+                    <li>法的助言の限界を認識</li>
+                    <li>機密情報の取り扱いに注意</li>
+                    <li>例：「これは法的助言ではなく、一般的な情報提供として回答してください」</li>
+                </ul>
+
+                <h2>プロンプト改善のプロセス</h2>
+                <ol>
+                    <li>初期プロンプトの作成</li>
+                    <li>回答の評価（正確性、有用性、形式など）</li>
+                    <li>プロンプトの修正・詳細化</li>
+                    <li>再試行と比較</li>
+                    <li>最適なプロンプトの保存と再利用</li>
+                </ol>
+
+                <h2>次回予告：主要なAIサービスの概要</h2>
+                <ul>
+                    <li>OpenAI（ChatGPT、GPT-4）</li>
+                    <li>Google（Gemini）</li>
+                    <li>Anthropic（Claude）</li>
+                    <li>Microsoft（Azure OpenAI）</li>
+                </ul>
+            </div>
+
+            <div class="slide-navigation">
+                <a href="1-3-llm-overview.html" class="prev-slide"><i class="fas fa-chevron-left"></i> 前のスライド</a>
+                <a href="1-5-ai-services.html" class="next-slide">次のスライド <i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+                    <p>法務業務の未来を照らす</p>
+                </div>
+                <div class="footer-links">
+                    <h4>リンク</h4>
+                    <ul>
+                        <li><a href="../../index.html">ホーム</a></li>
+                        <li><a href="../../about.html">会社案内</a></li>
+                        <li><a href="../../program.html">研修プログラム</a></li>
+                        <li><a href="../../contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>お問い合わせ</h4>
+                    <p>〒100-0001<br>東京都千代田区1-1-1<br>AI研修センター</p>
+                    <p>TEL: 03-1234-5678<br>Email: info@ai-study.jp</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 法務AIナビゲーター by LegalTorch All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロンプト作成演習 - 法務AIナビゲーター by LegalTorch</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">ホーム</a></li>
+                    <li><a href="../../about.html">会社案内</a></li>
+                    <li><a href="../../program.html">研修プログラム</a></li>
+                    <li><a href="../../contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>プロンプト作成演習</h1>
+            <div class="breadcrumbs">
+                <a href="../../index.html">ホーム</a> &gt; 
+                <a href="../../program.html">研修プログラム</a> &gt; 
+                <a href="../index.html">第1段階：AI基礎研修</a> &gt; 
+                <span>プロンプト作成演習</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="exercise-content">
+                <h2>目的</h2>
+                <p>この演習では、効果的なプロンプトを設計・作成するスキルを習得し、法務業務に関連するタスクに適用します。プロンプトの構造化、最適化、反復的改善のプロセスを実践的に学びます。</p>
+
+                <h2>準備</h2>
+                <ol>
+                    <li>ChatGPT、Claude、Google Geminiなど、任意のLLMにアクセスできる環境を準備してください</li>
+                    <li>演習用の法務文書サンプル（契約書、法的質問、判例など）を用意してください</li>
+                    <li>プロンプト作成と結果を記録するためのドキュメントを準備してください</li>
+                </ol>
+
+                <h2>演習1：基本的なプロンプト設計</h2>
+                <h3>タスク</h3>
+                <ol>
+                    <li>以下の3つの法務タスクに対する基本的なプロンプトを作成してください：
+                        <ul>
+                            <li>契約書の重要条項の抽出と分析</li>
+                            <li>法的質問への回答</li>
+                            <li>判例の要約と重要ポイントの抽出</li>
+                        </ul>
+                    </li>
+                    <li>各プロンプトには以下の要素を含めてください：
+                        <ul>
+                            <li>明確な指示</li>
+                            <li>期待する出力形式</li>
+                            <li>必要なコンテキスト情報</li>
+                        </ul>
+                    </li>
+                    <li>作成したプロンプトをLLMに入力し、結果を評価してください</li>
+                </ol>
+
+                <h3>提出物</h3>
+                <ul>
+                    <li>3つのタスクに対するプロンプト</li>
+                    <li>各プロンプトの実行結果</li>
+                    <li>結果の評価と改善点の考察（100-200字程度）</li>
+                </ul>
+
+                <h2>演習2：プロンプトパターンの適用</h2>
+                <h3>タスク</h3>
+                <ol>
+                    <li>以下のプロンプトパターンを使用して、演習1で作成したプロンプトを改良してください：
+                        <ul>
+                            <li>ロールプロンプト</li>
+                            <li>ステップバイステップ指示</li>
+                            <li>フューショット学習（例示）</li>
+                        </ul>
+                    </li>
+                    <li>各パターンを適用したプロンプトをLLMに入力し、結果を比較してください</li>
+                    <li>どのパターンがどのタスクに最も効果的だったか分析してください</li>
+                </ol>
+
+                <h3>提出物</h3>
+                <ul>
+                    <li>改良された3つのプロンプト</li>
+                    <li>各プロンプトの実行結果</li>
+                    <li>パターン適用の効果分析（200-300字程度）</li>
+                </ul>
+
+                <h2>演習3：プロンプトの反復的改善</h2>
+                <h3>タスク</h3>
+                <ol>
+                    <li>演習2で最も効果的だったプロンプトを選び、以下の観点から更に改善してください：
+                        <ul>
+                            <li>より具体的な指示の追加</li>
+                            <li>出力形式の詳細な指定</li>
+                            <li>エラー処理や例外ケースへの対応</li>
+                        </ul>
+                    </li>
+                    <li>改善したプロンプトをLLMに入力し、結果を評価してください</li>
+                    <li>LLMに「このプロンプトをより効果的にするための提案」を求め、その提案を取り入れてさらに改善してください</li>
+                </ol>
+
+                <h3>提出物</h3>
+                <ul>
+                    <li>初期プロンプト、改善プロンプト、最終プロンプトの3バージョン</li>
+                    <li>各バージョンの実行結果</li>
+                    <li>改善プロセスの説明と学んだ教訓（300-400字程度）</li>
+                </ul>
+
+                <h2>演習4：実務向けプロンプトライブラリの作成</h2>
+                <h3>タスク</h3>
+                <ol>
+                    <li>法務業務で頻繁に発生する5つのタスクを特定し、それぞれに効果的なプロンプトを作成してください</li>
+                    <li>各プロンプトには以下の情報を添えてください：
+                        <ul>
+                            <li>使用目的と適用シナリオ</li>
+                            <li>必要な入力情報</li>
+                            <li>期待される出力形式</li>
+                            <li>使用上の注意点</li>
+                        </ul>
+                    </li>
+                    <li>これらのプロンプトを再利用可能なテンプレートとしてライブラリ化してください</li>
+                </ol>
+
+                <h3>提出物</h3>
+                <ul>
+                    <li>5つのプロンプトテンプレート</li>
+                    <li>各テンプレートの使用ガイド</li>
+                    <li>ライブラリの活用方法の説明（200-300字程度）</li>
+                </ul>
+
+                <h2>評価基準</h2>
+                <ul>
+                    <li>プロンプトの明確さと具体性</li>
+                    <li>指示の構造化と論理的な順序</li>
+                    <li>出力形式の適切な指定</li>
+                    <li>プロンプトパターンの効果的な適用</li>
+                    <li>反復的改善プロセスの実践</li>
+                    <li>実務での適用可能性</li>
+                </ul>
+
+                <h2>提出方法</h2>
+                <p>研修用ポータルサイトの課題提出ページからWordまたはPDFファイルをアップロードしてください。ファイル名は「氏名_プロンプト演習.pdf」としてください。</p>
+
+                <h2>提出期限</h2>
+                <p>研修開始から2週間以内</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+                    <p>法務業務の未来を照らす</p>
+                </div>
+                <div class="footer-links">
+                    <h4>リンク</h4>
+                    <ul>
+                        <li><a href="../../index.html">ホーム</a></li>
+                        <li><a href="../../about.html">会社案内</a></li>
+                        <li><a href="../../program.html">研修プログラム</a></li>
+                        <li><a href="../../contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>お問い合わせ</h4>
+                    <p>〒100-0001<br>東京都千代田区1-1-1<br>AI研修センター</p>
+                    <p>TEL: 03-1234-5678<br>Email: info@ai-study.jp</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 法務AIナビゲーター by LegalTorch All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>
