@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIの種類 - 法務AIナビゲーター by LegalTorch</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="blog-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">ホーム</a></li>
+                    <li><a href="../../about.html">会社案内</a></li>
+                    <li><a href="../../program.html">研修プログラム</a></li>
+                    <li><a href="../../contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>AIの種類</h1>
+            <div class="breadcrumbs">
+                <a href="../../index.html">ホーム</a> &gt; 
+                <a href="../../program.html">研修プログラム</a> &gt; 
+                <a href="../index.html">第1段階：AI基礎研修</a> &gt; 
+                <a href="../slides/1-1-introduction.html">AIの基本概念と歴史</a> &gt;
+                <span>AIの種類</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="blog-content">
+                <h2>AIの種類</h2>
+                
+                <p>人工知能（AI）は様々な観点から分類することができます。AIの種類を理解することで、法務業務にどのタイプのAIが適しているかを判断する助けになります。ここでは、主要なAIの分類方法と、それぞれの特徴について解説します。</p>
+                
+                <h3>1. 機能による分類</h3>
+                
+                <!-- SVG illustration of AI types by function -->
+                <div class="svg-container">
+                    <svg width="700" height="400" viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f5f7fa"/>
+                                <stop offset="100%" stop-color="#c3cfe2"/>
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Background -->
+                        <rect width="700" height="400" fill="url(#bg-gradient)" rx="10" ry="10"/>
+                        
+                        <!-- Central AI node -->
+                        <circle cx="350" cy="200" r="60" fill="#3498db" opacity="0.2"/>
+                        <circle cx="350" cy="200" r="60" fill="none" stroke="#3498db" stroke-width="3"/>
+                        <text x="350" y="205" text-anchor="middle" font-family="Arial" font-size="18" fill="#2c3e50">AI</text>
+                        
+                        <!-- Perception AI -->
+                        <circle cx="150" cy="100" r="50" fill="#e74c3c" opacity="0.2"/>
+                        <circle cx="150" cy="100" r="50" fill="none" stroke="#e74c3c" stroke-width="3"/>
+                        <text x="150" y="105" text-anchor="middle" font-family="Arial" font-size="14" fill="#2c3e50">知覚AI</text>
+                        
+                        <!-- Cognitive AI -->
+                        <circle cx="550" cy="100" r="50" fill="#2ecc71" opacity="0.2"/>
+                        <circle cx="550" cy="100" r="50" fill="none" stroke="#2ecc71" stroke-width="3"/>
+                        <text x="550" y="105" text-anchor="middle" font-family="Arial" font-size="14" fill="#2c3e50">認知AI</text>
+                        
+                        <!-- Generative AI -->
+                        <circle cx="150" cy="300" r="50" fill="#9b59b6" opacity="0.2"/>
+                        <circle cx="150" cy="300" r="50" fill="none" stroke="#9b59b6" stroke-width="3"/>
+                        <text x="150" y="305" text-anchor="middle" font-family="Arial" font-size="14" fill="#2c3e50">生成AI</text>
+                        
+                        <!-- Action AI -->
+                        <circle cx="550" cy="300" r="50" fill="#f39c12" opacity="0.2"/>
+                        <circle cx="550" cy="300" r="50" fill="none" stroke="#f39c12" stroke-width="3"/>
+                        <text x="550" y="305" text-anchor="middle" font-family="Arial" font-size="14" fill="#2c3e50">行動AI</text>
+                        
+                        <!-- Connection lines -->
+                        <line x1="290" y1="200" x2="200" y2="100" stroke="#34495e" stroke-width="2"/>
+                        <line x1="410" y1="200" x2="500" y2="100" stroke="#34495e" stroke-width="2"/>
+                        <line x1="290" y1="200" x2="200" y2="300" stroke="#34495e" stroke-width="2"/>
+                        <line x1="410" y1="200" x2="500" y2="300" stroke="#34495e" stroke-width="2"/>
+                        
+                        <!-- Examples -->
+                        <text x="150" y="70" text-anchor="middle" font-family="Arial" font-size="12" fill="#34495e">画像認識・音声認識</text>
+                        <text x="550" y="70" text-anchor="middle" font-family="Arial" font-size="12" fill="#34495e">自然言語処理・推論</text>
+                        <text x="150" y="330" text-anchor="middle" font-family="Arial" font-size="12" fill="#34495e">文章・画像・音声生成</text>
+                        <text x="550" y="330" text-anchor="middle" font-family="Arial" font-size="12" fill="#34495e">ロボット制御・自動運転</text>
+                        
+                        <!-- Title -->
+                        <text x="350" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#2c3e50">機能によるAIの分類</text>
+                    </svg>
+                </div>
+                
+                <div class="blog-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>種類</th>
+                                <th>特徴</th>
+                                <th>法務分野での応用例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>知覚AI<br>(Perceptive AI)</td>
+                                <td>画像、音声、テキストなどのデータを認識・理解する能力</td>
+                                <td>契約書のOCR読み取り、音声議事録作成、法律文書の分類</td>
+                            </tr>
+                            <tr>
+                                <td>認知AI<br>(Cognitive AI)</td>
+                                <td>情報を処理し、推論や問題解決を行う能力</td>
+                                <td>法的リスク分析、判例検索・分析、コンプライアンス評価</td>
+                            </tr>
+                            <tr>
+                                <td>生成AI<br>(Generative AI)</td>
+                                <td>新しいコンテンツを創造する能力</td>
+                                <td>契約書ドラフト作成、法的文書要約、回答案の生成</td>
+                            </tr>
+                            <tr>
+                                <td>行動AI<br>(Action AI)</td>
+                                <td>物理的または仮想的な行動を実行する能力</td>
+                                <td>法的ワークフロー自動化、電子開示プロセス管理</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>生成AIの急速な発展</h4>
+                    <p>2020年代に入り、特に生成AI（Generative AI）が急速に発展しています。ChatGPTやGemini、Claude、Stable Diffusionなどの生成AIモデルは、テキスト生成、画像生成、コード生成など多様な創造的タスクを実行できるようになりました。法務分野でも、契約書ドラフトの作成や法的文書の要約など、多くの業務で活用されています。</p>
+                </div>
+                
+                <h3>2. 学習方法による分類</h3>
+                
+                <p>AIの学習方法によっても、以下のように分類することができます：</p>
+                
+                <ul>
+                    <li><strong>教師あり学習（Supervised Learning）</strong>：ラベル付きデータを使用して学習するAI。入力と正解の対応関係を学習します。</li>
+                    <li><strong>教師なし学習（Unsupervised Learning）</strong>：ラベルなしデータからパターンを見つけ出すAI。データの構造や関係性を自ら発見します。</li>
+                    <li><strong>強化学習（Reinforcement Learning）</strong>：試行錯誤と報酬に基づいて学習するAI。行動の結果に応じた報酬を最大化するよう学習します。</li>
+                    <li><strong>半教師あり学習（Semi-supervised Learning）</strong>：少量のラベル付きデータと大量のラベルなしデータを組み合わせて学習するAI。</li>
+                    <li><strong>転移学習（Transfer Learning）</strong>：あるタスクで学習した知識を別のタスクに応用するAI。GPTなどの大規模言語モデルはこの方法を活用しています。</li>
+                </ul>
+                
+                <div class="example-box">
+                    <h4>法務分野での学習方法の応用例</h4>
+                    <p><strong>教師あり学習</strong>：契約書の条項分類（特定の条項が「秘密保持」「賠償責任」などのカテゴリに属するかを判断）<br>
+                    <strong>教師なし学習</strong>：類似判例のクラスタリング（関連性のある判例を自動的にグループ化）<br>
+                    <strong>強化学習</strong>：法的交渉シミュレーション（最適な交渉戦略を学習）<br>
+                    <strong>転移学習</strong>：一般的な法律知識を持つLLMを特定の法域や専門分野に適応させる</p>
+                </div>
+                
+                <h3>3. 能力の範囲による分類</h3>
+                
+                <!-- SVG illustration of AI types by capability -->
+                <div class="svg-container">
+                    <svg width="700" height="300" viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="capability-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#3498db"/>
+                                <stop offset="50%" stop-color="#9b59b6"/>
+                                <stop offset="100%" stop-color="#e74c3c"/>
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Background -->
+                        <rect width="700" height="300" fill="#f8f9fa" rx="10" ry="10"/>
+                        
+                        <!-- Capability spectrum -->
+                        <rect x="100" y="150" width="500" height="30" fill="url(#capability-gradient)" rx="5" ry="5"/>
+                        
+                        <!-- ANI marker -->
+                        <line x1="150" y1="150" x2="150" y2="100" stroke="#3498db" stroke-width="2"/>
+                        <circle cx="150" cy="100" r="40" fill="#3498db" opacity="0.2"/>
+                        <circle cx="150" cy="100" r="40" fill="none" stroke="#3498db" stroke-width="2"/>
+                        <text x="150" y="100" text-anchor="middle" font-family="Arial" font-size="14" fill="#2c3e50">ANI</text>
+                        <text x="150" y="120" text-anchor="middle" font-family="Arial" font-size="10" fill="#2c3e50">特化型AI</text>
+                        
+                        <!-- AGI marker -->
+                        <line x1="350" y1="150" x2="350" y2="100" stroke="#9b59b6" stroke-width="2"/>
+                        <circle cx="350" cy="100" r="40" fill="#9b59b6" opacity="0.2"/>
+                        <circle cx="350" cy="100" r="40" fill="none" stroke="#9b59b6" stroke-width="2"/>
+                        <text x="350" y="100" text-anchor="middle" font-family="Arial" font-size="14" fill="#2c3e50">AGI</text>
+                        <text x="350" y="120" text-anchor="middle" font-family="Arial" font-size="10" fill="#2c3e50">汎用AI</text>
+                        
+                        <!-- ASI marker -->
+                        <line x1="550" y1="150" x2="550" y2="100" stroke="#e74c3c" stroke-width="2"/>
+                        <circle cx="550" cy="100" r="40" fill="#e74c3c" opacity="0.2"/>
+                        <circle cx="550" cy="100" r="40" fill="none" stroke="#e74c3c" stroke-width="2"/>
+                        <text x="550" y="100" text-anchor="middle" font-family="Arial" font-size="14" fill="#2c3e50">ASI</text>
+                        <text x="550" y="120" text-anchor="middle" font-family="Arial" font-size="10" fill="#2c3e50">超知能AI</text>
+                        
+                        <!-- Current state marker -->
+                        <line x1="200" y1="180" x2="200" y2="220" stroke="#34495e" stroke-width="2"/>
+                        <text x="200" y="240" text-anchor="middle" font-family="Arial" font-size="12" fill="#34495e">現在の技術水準</text>
+                        <polygon points="200,180 195,190 205,190" fill="#34495e"/>
+                        
+                        <!-- Title -->
+                        <text x="350" y="50" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#2c3e50">能力の範囲によるAIの分類</text>
+                    </svg>
+                </div>
+                
+                <p>AIは能力の範囲によって以下の3つに分類されます：</p>
+                
+                <ol>
+                    <li><strong>特化型AI（ANI: Artificial Narrow Intelligence）</strong><br>
+                    特定のタスクに特化したAI。現在実用化されているAIはすべてこのカテゴリに属します。例えば、チェスAI、画像認識AI、自然言語処理AIなどは、それぞれの特定領域では高い能力を発揮しますが、他の領域には適用できません。</li>
+                    
+                    <li><strong>汎用AI（AGI: Artificial General Intelligence）</strong><br>
+                    人間と同等の汎用的な知能を持つAI。様々なタスクに対応でき、自己学習能力や創造性、問題解決能力を持ちます。現時点では理論上の概念であり、実現していません。</li>
+                    
+                    <li><strong>超知能AI（ASI: Artificial Super Intelligence）</strong><br>
+                    人間の知能を超えたAI。あらゆる分野で人間以上の能力を発揮します。これは現時点では純粋に理論的な概念です。</li>
+                </ol>
+                
+                <div class="highlight-box">
+                    <h4>現在のAI技術の位置づけ</h4>
+                    <p>現在のAI技術は特化型AI（ANI）の段階にあります。ChatGPTなどの大規模言語モデルは、一見すると多様なタスクに対応できるように見えますが、実際には言語処理という特定の領域に特化したAIです。真の意味での汎用AI（AGI）の実現には、まだ多くの技術的課題が残されています。</p>
+                </div>
+                
+                <h3>4. アーキテクチャによる分類</h3>
+                
+                <p>AIのアーキテクチャ（構造）によっても分類することができます：</p>
+                
+                <div class="blog-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>アーキテクチャ</th>
+                                <th>特徴</th>
+                                <th>代表的なモデル/応用</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ルールベースAI</td>
+                                <td>明示的なルールとロジックに基づいて動作</td>
+                                <td>エキスパートシステム、初期の法律アドバイスシステム</td>
+                            </tr>
+                            <tr>
+                                <td>ニューラルネットワーク</td>
+                                <td>脳の神経細胞をモデルにした構造で学習</td>
+                                <td>画像認識、音声認識、自然言語処理</td>
+                            </tr>
+                            <tr>
+                                <td>深層学習（Deep Learning）</td>
+                                <td>多層のニューラルネットワークを使用</td>
+                                <td>GPT、BERT、Stable Diffusion</td>
+                            </tr>
+                            <tr>
+                                <td>確率的モデル</td>
+                                <td>確率論に基づいて推論を行う</td>
+                                <td>ベイジアンネットワーク、マルコフモデル</td>
+                            </tr>
+                            <tr>
+                                <td>進化的アルゴリズム</td>
+                                <td>生物の進化過程を模倣して最適解を探索</td>
+                                <td>最適化問題、自動プログラミング</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="example-box">
+                    <h4>法務分野でのアーキテクチャ選択</h4>
+                    <p>法務分野では、タスクの性質によって適切なAIアーキテクチャが異なります：</p>
+                    <ul>
+                        <li><strong>ルールベースAI</strong>：明確なルールが存在する法的チェックリスト、コンプライアンス確認</li>
+                        <li><strong>深層学習</strong>：契約書の理解と分析、法的文書の生成、判例の類似性分析</li>
+                        <li><strong>確率的モデル</strong>：訴訟結果の予測、リスク評価</li>
+                    </ul>
+                </div>
+                
+                <h3>5. 法務分野で特に重要なAIの種類</h3>
+                
+                <p>法務業務においては、以下のタイプのAIが特に重要な役割を果たしています：</p>
+                
+                <ul>
+                    <li><strong>自然言語処理AI（NLP）</strong>：法律文書の理解、分析、生成を行います。契約書レビュー、法的リサーチ、文書要約などに活用されます。</li>
+                    <li><strong>文書分類AI</strong>：大量の法律文書を適切なカテゴリに分類します。電子開示（eDiscovery）プロセスで重要な役割を果たします。</li>
+                    <li><strong>予測分析AI</strong>：過去のデータに基づいて将来の結果を予測します。訴訟結果予測、リスク評価などに活用されます。</li>
+                    <li><strong>知識ベースAI</strong>：法律知識を体系化し、質問に回答します。法的アドバイスの提供、コンプライアンス確認などに活用されます。</li>
+                    <li><strong>プロセス自動化AI</strong>：定型的な法務業務を自動化します。文書作成、期限管理、契約管理などに活用されます。</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <h4>法務AIの選択ポイント</h4>
+                    <p>法務業務にAIを導入する際は、以下の点を考慮して適切なAIの種類を選択することが重要です：</p>
+                    <ol>
+                        <li>解決したい法務課題の性質（定型業務の自動化か、複雑な分析か）</li>
+                        <li>必要な精度と説明可能性（高リスクな判断には説明可能なAIが必要）</li>
+                        <li>利用可能なデータの量と質（学習データの制約）</li>
+                        <li>セキュリティとプライバシーの要件（機密情報の取り扱い）</li>
+                        <li>導入・運用コストと期待される効果のバランス</li>
+                    </ol>
+                </div>
+                
+                <p>AIの種類を理解することで、法務業務の各場面で最適なAIツールを選択し、効果的に活用することができます。次のセクションでは、法務分野におけるAIの具体的な活用事例について詳しく見ていきましょう。</p>
+                
+                <div class="blog-navigation">
+                    <a href="ai-history.html"><i class="fas fa-arrow-left"></i> AIの歴史的発展</a>
+                    <a href="ai-legal-role.html">法務分野におけるAIの位置づけ <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+                    <p>法務業務の未来を照らす</p>
+                </div>
+                <div class="footer-links">
+                    <h4>リンク</h4>
+                    <ul>
+                        <li><a href="../../index.html">ホーム</a></li>
+                        <li><a href="../../about.html">会社案内</a></li>
+                        <li><a href="../../program.html">研修プログラム</a></li>
+                        <li><a href="../../contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>お問い合わせ</h4>
+                    <p>〒170-6033<br>東京都豊島区東池袋3-1-1<br>サンシャイン60</p>
+                    <p>TEL: 03-1234-5678<br>Email: info@legaltorch.co.jp</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 法務AIナビゲーター by LegalTorch All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>
