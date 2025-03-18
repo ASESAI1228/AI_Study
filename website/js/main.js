@@ -134,54 +134,41 @@ document.addEventListener('DOMContentLoaded', function() {
         const playVideo = () => {
             // Set muted attribute to ensure autoplay works in most browsers
             video.muted = true;
+            video.setAttribute('autoplay', '');
+            video.setAttribute('playsinline', '');
             
+            // Force play and handle any errors silently
             video.play().catch(error => {
-                console.log('Autoplay prevented by browser policy. Using overlay play button.');
-                // Show overlay if autoplay fails
-                const videoContainer = video.parentElement;
-                const playOverlay = videoContainer.querySelector('.video-play-overlay');
-                if (playOverlay) {
-                    playOverlay.style.display = 'flex';
-                }
+                console.log('Autoplay prevented by browser policy. Will retry automatically.');
             });
         };
         
-        // Try to play video immediately
+        // Try multiple approaches to ensure autoplay works
+        
+        // 1. Try to play video immediately
         playVideo();
         
-        // Also try to play when document is fully loaded
+        // 2. Try again when document is fully loaded
         if (document.readyState === 'complete') {
             playVideo();
         } else {
             window.addEventListener('load', playVideo);
         }
         
-        // Try again after a short delay (some browsers need this)
-        setTimeout(playVideo, 1000);
+        // 3. Try again after a short delay (some browsers need this)
+        setTimeout(playVideo, 500);
         
-        // Handle video overlay play button
-        const videoContainer = video.parentElement;
-        const playOverlay = videoContainer.querySelector('.video-play-overlay');
+        // 4. Try again after a longer delay (for slower connections)
+        setTimeout(playVideo, 2000);
         
-        if (playOverlay) {
-            // Add click event to play video and hide overlay
-            playOverlay.addEventListener('click', () => {
-                video.play().then(() => {
-                    playOverlay.style.display = 'none';
-                }).catch(err => {
-                    console.error('Failed to play video:', err);
-                });
-            });
-            
-            // Show overlay when video is paused
-            video.addEventListener('pause', () => {
-                playOverlay.style.display = 'flex';
-            });
-            
-            // Hide overlay when video is playing
-            video.addEventListener('play', () => {
-                playOverlay.style.display = 'none';
-            });
-        }
+        // 5. Try again on user interaction (this helps with strict browser policies)
+        document.addEventListener('click', () => playVideo(), { once: true });
+        document.addEventListener('touchstart', () => playVideo(), { once: true });
+        
+        // 6. Ensure video loops properly
+        video.addEventListener('ended', () => {
+            video.currentTime = 0;
+            video.play().catch(e => console.log('Loop playback prevented'));
+        });
     });
 });
