@@ -322,6 +322,7 @@ nav ul li a:hover::after {
     font-size: 3rem;
     margin-bottom: 25px;
     background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
@@ -565,42 +566,46 @@ footer {
 }
 
 .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .team-member {
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: var(--transition);
-}
-
-.team-member:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .team-member img {
-    width: 100%;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 30px;
+    display: block;
 }
 
 .team-info {
-    padding: 20px;
     text-align: center;
 }
 
 .team-info h3 {
-    margin-bottom: 5px;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
 }
 
-.team-info p {
+.team-info p:first-of-type {
     color: var(--secondary-color);
-    margin-bottom: 10px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.team-info p:last-of-type {
+    text-align: left;
+    line-height: 1.8;
+    color: #666;
 }
 
 /* Contact Page Styles */
@@ -661,6 +666,7 @@ footer {
     color: var(--secondary-color);
     margin-right: 20px;
     background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
