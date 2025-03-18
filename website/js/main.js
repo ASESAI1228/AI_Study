@@ -126,4 +126,62 @@ document.addEventListener('DOMContentLoaded', function() {
             testimonials[currentSlide].style.display = 'block';
         }, 5000);
     }
+    
+    // Ensure video autoplay works across browsers
+    const videos = document.querySelectorAll('video[autoplay]');
+    videos.forEach(video => {
+        // Force play the video immediately when DOM is loaded
+        const playVideo = () => {
+            // Set muted attribute to ensure autoplay works in most browsers
+            video.muted = true;
+            
+            video.play().catch(error => {
+                console.log('Autoplay prevented by browser policy. Using overlay play button.');
+                // Show overlay if autoplay fails
+                const videoContainer = video.parentElement;
+                const playOverlay = videoContainer.querySelector('.video-play-overlay');
+                if (playOverlay) {
+                    playOverlay.style.display = 'flex';
+                }
+            });
+        };
+        
+        // Try to play video immediately
+        playVideo();
+        
+        // Also try to play when document is fully loaded
+        if (document.readyState === 'complete') {
+            playVideo();
+        } else {
+            window.addEventListener('load', playVideo);
+        }
+        
+        // Try again after a short delay (some browsers need this)
+        setTimeout(playVideo, 1000);
+        
+        // Handle video overlay play button
+        const videoContainer = video.parentElement;
+        const playOverlay = videoContainer.querySelector('.video-play-overlay');
+        
+        if (playOverlay) {
+            // Add click event to play video and hide overlay
+            playOverlay.addEventListener('click', () => {
+                video.play().then(() => {
+                    playOverlay.style.display = 'none';
+                }).catch(err => {
+                    console.error('Failed to play video:', err);
+                });
+            });
+            
+            // Show overlay when video is paused
+            video.addEventListener('pause', () => {
+                playOverlay.style.display = 'flex';
+            });
+            
+            // Hide overlay when video is playing
+            video.addEventListener('play', () => {
+                playOverlay.style.display = 'none';
+            });
+        }
+    });
 });
