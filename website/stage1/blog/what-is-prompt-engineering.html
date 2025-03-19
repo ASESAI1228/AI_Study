@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロンプトエンジニアリングとは - 法務AIナビゲーター by LegalTorch</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="blog-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">ホーム</a></li>
+                    <li><a href="../../about.html">会社案内</a></li>
+                    <li><a href="../../program.html">研修プログラム</a></li>
+                    <li><a href="../../contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>プロンプトエンジニアリングとは</h1>
+            <div class="breadcrumbs">
+                <a href="../../index.html">ホーム</a> &gt; 
+                <a href="../../program.html">研修プログラム</a> &gt; 
+                <a href="../index.html">第1段階：AI基礎研修</a> &gt; 
+                <a href="../slides/1-4-prompt-engineering.html">プロンプトエンジニアリング入門</a> &gt;
+                <span>プロンプトエンジニアリングとは</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="blog-content">
+                <h2>プロンプトエンジニアリングの基本概念</h2>
+                
+                <p>プロンプトエンジニアリングとは、AIに対して効果的な指示を出すための技術・方法論です。特にChatGPTやGeminiなどの大規模言語モデル（LLM）を活用する際に、望ましい回答や成果物を得るための入力設計を行うスキルとして注目されています。</p>
+                
+                <!-- SVG illustration of prompt engineering concept -->
+                <div class="svg-container">
+                    <svg width="700" height="400" viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f5f7fa"/>
+                                <stop offset="100%" stop-color="#c3cfe2"/>
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Background -->
+                        <rect width="700" height="400" fill="url(#bg-gradient)" rx="10" ry="10"/>
+                        
+                        <!-- Title -->
+                        <text x="350" y="50" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" fill="#2c3e50">プロンプトエンジニアリング</text>
+                        
+                        <!-- Human -->
+                        <circle cx="150" cy="150" r="40" fill="#3498db" opacity="0.7"/>
+                        <rect x="130" y="190" width="40" height="80" rx="10" fill="#3498db" opacity="0.7"/>
+                        <line x1="130" y1="220" x2="100" y2="260" stroke="#3498db" stroke-width="10" opacity="0.7"/>
+                        <line x1="170" y1="220" x2="200" y2="260" stroke="#3498db" stroke-width="10" opacity="0.7"/>
+                        <line x1="130" y1="270" x2="120" y2="320" stroke="#3498db" stroke-width="10" opacity="0.7"/>
+                        <line x1="170" y1="270" x2="180" y2="320" stroke="#3498db" stroke-width="10" opacity="0.7"/>
+                        <text x="150" y="100" text-anchor="middle" font-family="Arial" font-size="16" fill="#2c3e50">人間</text>
+                        
+                        <!-- AI -->
+                        <circle cx="550" cy="150" r="40" fill="#e74c3c" opacity="0.7"/>
+                        <rect x="530" y="190" width="40" height="80" rx="10" fill="#e74c3c" opacity="0.7"/>
+                        <line x1="530" y1="220" x2="500" y2="260" stroke="#e74c3c" stroke-width="10" opacity="0.7"/>
+                        <line x1="570" y1="220" x2="600" y2="260" stroke="#e74c3c" stroke-width="10" opacity="0.7"/>
+                        <line x1="530" y1="270" x2="520" y2="320" stroke="#e74c3c" stroke-width="10" opacity="0.7"/>
+                        <line x1="570" y1="270" x2="580" y2="320" stroke="#e74c3c" stroke-width="10" opacity="0.7"/>
+                        <text x="550" y="100" text-anchor="middle" font-family="Arial" font-size="16" fill="#2c3e50">AI</text>
+                        
+                        <!-- Prompt Engineering Process -->
+                        <rect x="250" y="150" width="200" height="100" rx="10" ry="10" fill="#2ecc71" opacity="0.2" stroke="#2ecc71" stroke-width="2"/>
+                        <text x="350" y="180" text-anchor="middle" font-family="Arial" font-size="18" fill="#2c3e50">プロンプト</text>
+                        <text x="350" y="200" text-anchor="middle" font-family="Arial" font-size="18" fill="#2c3e50">エンジニアリング</text>
+                        
+                        <!-- Arrows -->
+                        <path d="M200,150 L250,150" stroke="#34495e" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+                        <path d="M450,150 L500,150" stroke="#34495e" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+                        <path d="M500,200 L450,200" stroke="#34495e" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+                        <path d="M250,200 L200,200" stroke="#34495e" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+                        
+                        <!-- Arrow marker -->
+                        <defs>
+                            <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#34495e"/>
+                            </marker>
+                        </defs>
+                        
+                        <!-- Components -->
+                        <rect x="270" y="280" width="160" height="30" rx="5" ry="5" fill="#9b59b6" opacity="0.2" stroke="#9b59b6" stroke-width="2"/>
+                        <text x="350" y="300" text-anchor="middle" font-family="Arial" font-size="14" fill="#2c3e50">明確な指示</text>
+                        
+                        <rect x="270" y="320" width="160" height="30" rx="5" ry="5" fill="#9b59b6" opacity="0.2" stroke="#9b59b6" stroke-width="2"/>
+                        <text x="350" y="340" text-anchor="middle" font-family="Arial" font-size="14" fill="#2c3e50">コンテキスト設定</text>
+                        
+                        <rect x="270" y="360" width="160" height="30" rx="5" ry="5" fill="#9b59b6" opacity="0.2" stroke="#9b59b6" stroke-width="2"/>
+                        <text x="350" y="380" text-anchor="middle" font-family="Arial" font-size="14" fill="#2c3e50">出力形式の指定</text>
+                    </svg>
+                </div>
+                
+                <h3>プロンプトエンジニアリングの定義</h3>
+                
+                <div class="highlight-box">
+                    <h4>プロンプトエンジニアリングとは</h4>
+                    <p>AIに対して効果的な指示を出すための技術・方法論であり、AIから望ましい回答や成果物を得るための入力設計を行うプロセスです。単なる「質問」ではなく、AIの能力を最大限に引き出すための「設計」という側面を持ちます。</p>
+                </div>
+                
+                <h3>プロンプトエンジニアリングの重要性</h3>
+                
+                <p>プロンプトエンジニアリングが重要である理由は以下の通りです：</p>
+                
+                <ul>
+                    <li><strong>AIの応答品質に直結する</strong>：同じ質問でも表現方法によって回答の質が大きく変わります。適切なプロンプト設計は、より正確で有用な回答を引き出す鍵となります。</li>
+                    <li><strong>AIの能力を最大化する</strong>：AIの潜在能力を引き出すためには、適切な指示が必要です。優れたプロンプトは、AIの思考プロセスを導き、より深い分析や創造的な解決策を生み出します。</li>
+                    <li><strong>効率性の向上</strong>：的確なプロンプトは、何度も質問を繰り返す必要性を減らし、目的の回答に素早く到達することを可能にします。</li>
+                    <li><strong>一貫性の確保</strong>：標準化されたプロンプトパターンを使用することで、AIからの回答の一貫性を高めることができます。</li>
+                </ul>
+                
+                <div class="example-box">
+                    <h4>同じ質問でも表現方法で変わる回答例</h4>
+                    <p><strong>基本的な質問：</strong><br>「この契約書を要約して」</p>
+                    <p><strong>プロンプトエンジニアリングを適用した質問：</strong><br>「あなたは企業法務の専門家です。この賃貸借契約書を、重要な法的リスクに焦点を当てながら、5つの主要ポイントで要約してください。各ポイントは50字以内で簡潔に説明し、リスクレベル（高・中・低）を付記してください。」</p>
+                    <p>後者のプロンプトでは、役割の指定、焦点の明確化、出力形式の指定、制約条件の設定などの要素が含まれており、より構造化された有用な回答を得られる可能性が高まります。</p>
+                </div>
+                
+                <h3>法務分野におけるプロンプトエンジニアリングの意義</h3>
+                
+                <p>法務業務においてプロンプトエンジニアリングは特に重要な意味を持ちます：</p>
+                
+                <ul>
+                    <li><strong>正確性の確保</strong>：法的文書の分析や法的助言の生成において、正確さは最も重要です。適切なプロンプト設計により、AIからより正確な法的分析を引き出すことができます。</li>
+                    <li><strong>専門性の活用</strong>：法律の専門用語や概念を適切にプロンプトに組み込むことで、AIの法的文脈における理解を深めることができます。</li>
+                    <li><strong>効率化と標準化</strong>：定型的な法務タスク（契約書レビュー、法的リスク分析など）において、標準化されたプロンプトテンプレートを活用することで、一貫性のある効率的な業務遂行が可能になります。</li>
+                    <li><strong>倫理的・法的制約の明示</strong>：法的助言の限界や倫理的配慮をプロンプトに組み込むことで、AIの出力に適切な制約を設けることができます。</li>
+                </ul>
+                
+                <h3>プロンプトエンジニアリングのスキル習得</h3>
+                
+                <p>プロンプトエンジニアリングのスキルは、以下のようなステップで習得することができます：</p>
+                
+                <ol>
+                    <li><strong>基本原則の理解</strong>：明確な指示、コンテキスト設定、出力形式の指定など、効果的なプロンプトの基本要素を理解する</li>
+                    <li><strong>パターンの学習</strong>：ロールプロンプト、ステップバイステップ、フォーマット指定などの一般的なプロンプトパターンを学ぶ</li>
+                    <li><strong>実践と反復</strong>：様々なプロンプトを試し、結果を評価し、改善するサイクルを繰り返す</li>
+                    <li><strong>専門分野への適用</strong>：法務など特定の専門分野に特化したプロンプト技術を開発する</li>
+                    <li><strong>テンプレート化と共有</strong>：効果的なプロンプトをテンプレート化し、組織内で共有・改善する</li>
+                </ol>
+                
+                <h2>プロンプトエンジニアリングの発展と今後</h2>
+                
+                <p>プロンプトエンジニアリングは比較的新しい分野ですが、AIの普及とともに急速に発展しています。今後は以下のような方向性が予想されます：</p>
+                
+                <ul>
+                    <li><strong>専門化と体系化</strong>：業界や職種ごとに特化したプロンプトエンジニアリング手法の体系化</li>
+                    <li><strong>自動化ツールの発展</strong>：プロンプトの自動生成や最適化を行うツールの登場</li>
+                    <li><strong>教育プログラムの充実</strong>：プロンプトエンジニアリングを専門的に学ぶコースやプログラムの増加</li>
+                    <li><strong>標準化の進展</strong>：効果的なプロンプトの設計パターンや評価基準の標準化</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <h4>プロンプトエンジニアリングの本質</h4>
+                    <p>プロンプトエンジニアリングは単なる「AIへの話しかけ方」ではなく、人間とAIのコミュニケーションを最適化するためのインターフェース設計です。AIの能力を最大限に引き出し、人間の意図を正確に伝えるための橋渡しとなる重要なスキルと言えるでしょう。</p>
+                </div>
+                
+                <div class="blog-navigation">
+                    <a href="llm-capabilities.html"><i class="fas fa-arrow-left"></i> LLMの能力と限界</a>
+                    <a href="effective-prompt-elements.html">効果的なプロンプトの基本要素 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+                    <p>法務業務の未来を照らす</p>
+                </div>
+                <div class="footer-links">
+                    <h4>リンク</h4>
+                    <ul>
+                        <li><a href="../../index.html">ホーム</a></li>
+                        <li><a href="../../about.html">会社案内</a></li>
+                        <li><a href="../../program.html">研修プログラム</a></li>
+                        <li><a href="../../contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>お問い合わせ</h4>
+                    <p>〒170-6033<br>東京都豊島区東池袋3-1-1<br>サンシャイン60</p>
+                    <p>TEL: 03-1234-5678<br>Email: info@legaltorch.co.jp</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 法務AIナビゲーター by LegalTorch All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>
