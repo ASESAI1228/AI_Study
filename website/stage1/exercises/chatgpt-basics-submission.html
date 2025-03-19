@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT基本操作演習 課題提出 - 法務AIナビゲーター by LegalTorch</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/submission.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">ホーム</a></li>
+                    <li><a href="../../about.html">会社案内</a></li>
+                    <li><a href="../../program.html">研修プログラム</a></li>
+                    <li><a href="../../contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>ChatGPT基本操作演習 課題提出</h1>
+            <div class="breadcrumbs">
+                <a href="../../index.html">ホーム</a> &gt; 
+                <a href="../../program.html">研修プログラム</a> &gt; 
+                <a href="../index.html">第1段階：AI基礎研修</a> &gt; 
+                <a href="chatgpt-basics.html">ChatGPT基本操作演習</a> &gt;
+                <span>課題提出</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="submission-content">
+                <h2>課題提出フォーム</h2>
+                <p>以下のフォームに回答を入力してください。すべての必須項目を入力後、「提出する」ボタンをクリックしてください。各回答は400〜600文字程度で記述してください。</p>
+                
+                <form id="exerciseSubmissionForm" class="submission-form" data-exercise-id="chatgpt-basics">
+                    <div class="form-section">
+                        <h3>1. ChatGPTの法務業務における有用性</h3>
+                        <div class="form-group">
+                            <label for="usefulness">ChatGPTが法務業務においてどのように役立つか、具体的な例を挙げて説明してください。<span class="required">*</span></label>
+                            <textarea id="usefulness" name="usefulness" data-question-id="usefulness" data-min-chars="400" data-max-chars="600" required></textarea>
+                            <div class="error-message">この項目は必須です。400〜600文字で入力してください。</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>2. 回答の正確性と信頼性</h3>
+                        <div class="form-group">
+                            <label for="accuracy">演習を通じて感じたChatGPTの回答の正確性と信頼性について評価してください。<span class="required">*</span></label>
+                            <textarea id="accuracy" name="accuracy" data-question-id="accuracy" data-min-chars="400" data-max-chars="600" required></textarea>
+                            <div class="error-message">この項目は必須です。400〜600文字で入力してください。</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>3. 効果的な質問・指示の出し方</h3>
+                        <div class="form-group">
+                            <label for="effective_prompts">より良い結果を得るための効果的な質問や指示の出し方について、あなたが発見したポイントを説明してください。<span class="required">*</span></label>
+                            <textarea id="effective_prompts" name="effective_prompts" data-question-id="effective_prompts" data-min-chars="400" data-max-chars="600" required></textarea>
+                            <div class="error-message">この項目は必須です。400〜600文字で入力してください。</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>4. 法務担当者として認識すべき限界と注意点</h3>
+                        <div class="form-group">
+                            <label for="limitations">法務担当者がChatGPTを活用する際に認識すべき限界と注意点について説明してください。<span class="required">*</span></label>
+                            <textarea id="limitations" name="limitations" data-question-id="limitations" data-min-chars="400" data-max-chars="600" required></textarea>
+                            <div class="error-message">この項目は必須です。400〜600文字で入力してください。</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary">提出する</button>
+                        <button type="button" class="btn secondary" id="saveProgress">途中経過を保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+                    <p>法務業務の未来を照らす</p>
+                </div>
+                <div class="footer-links">
+                    <h4>リンク</h4>
+                    <ul>
+                        <li><a href="../../index.html">ホーム</a></li>
+                        <li><a href="../../about.html">会社案内</a></li>
+                        <li><a href="../../program.html">研修プログラム</a></li>
+                        <li><a href="../../contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>お問い合わせ</h4>
+                    <p>〒170-6033<br>東京都豊島区東池袋3-1-1<br>サンシャイン60</p>
+                    <p>TEL: 03-1234-5678<br>Email: info@legaltorch.co.jp</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 法務AIナビゲーター by LegalTorch All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script src="submission.js"></script>
+</body>
+</html>
