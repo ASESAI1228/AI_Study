@@ -1446,3 +1446,81 @@ footer {
         padding: 15px;
     }
 }
+
+/* AIサービスとノートブックのスタイル */
+.ai-service-links {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.ai-service-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.ai-service-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+}
+
+.model-answer-link {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.notebook-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.colab-button-container {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.colab-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #4285F4;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.colab-button:hover {
+    background-color: #3367D6;
+}
+
+.preview-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.preview-section:last-child {
+    border-bottom: none;
+}
+
+.notebook-instructions {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.back-to-exercise {
+    text-align: center;
+    margin: 2rem 0;
+}
