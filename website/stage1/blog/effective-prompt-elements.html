@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>効果的なプロンプトの基本要素 - 法務AIナビゲーター by LegalTorch</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="blog-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">ホーム</a></li>
+                    <li><a href="../../about.html">会社案内</a></li>
+                    <li><a href="../../program.html">研修プログラム</a></li>
+                    <li><a href="../../contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>効果的なプロンプトの基本要素</h1>
+            <div class="breadcrumbs">
+                <a href="../../index.html">ホーム</a> &gt; 
+                <a href="../../program.html">研修プログラム</a> &gt; 
+                <a href="../index.html">第1段階：AI基礎研修</a> &gt; 
+                <a href="../slides/1-4-prompt-engineering.html">プロンプトエンジニアリング入門</a> &gt;
+                <span>効果的なプロンプトの基本要素</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="blog-content">
+                <h2>効果的なプロンプトを構成する4つの基本要素</h2>
+                
+                <p>AIに対して効果的な指示を出すためには、プロンプトに特定の要素を組み込むことが重要です。ここでは、効果的なプロンプトを構成する4つの基本要素について詳しく解説します。</p>
+                
+                <!-- SVG illustration of prompt elements -->
+                <div class="svg-container">
+                    <svg width="700" height="400" viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f5f7fa"/>
+                                <stop offset="100%" stop-color="#c3cfe2"/>
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Background -->
+                        <rect width="700" height="400" fill="url(#bg-gradient)" rx="10" ry="10"/>
+                        
+                        <!-- Title -->
+                        <text x="350" y="50" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" fill="#2c3e50">効果的なプロンプトの基本要素</text>
+                        
+                        <!-- Central Prompt Box -->
+                        <rect x="200" y="80" width="300" height="100" rx="10" ry="10" fill="#3498db" opacity="0.2" stroke="#3498db" stroke-width="2"/>
+                        <text x="350" y="130" text-anchor="middle" font-family="Arial" font-size="20" fill="#2c3e50">効果的なプロンプト</text>
+                        
+                        <!-- Element 1: Clear Instructions -->
+                        <rect x="100" y="220" width="120" height="120" rx="10" ry="10" fill="#e74c3c" opacity="0.2" stroke="#e74c3c" stroke-width="2"/>
+                        <text x="160" y="270" text-anchor="middle" font-family="Arial" font-size="16" fill="#2c3e50">明確な指示</text>
+                        <line x1="160" y1="220" x2="250" y2="180" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,5"/>
+                        
+                        <!-- Element 2: Context Setting -->
+                        <rect x="240" y="220" width="120" height="120" rx="10" ry="10" fill="#2ecc71" opacity="0.2" stroke="#2ecc71" stroke-width="2"/>
+                        <text x="300" y="270" text-anchor="middle" font-family="Arial" font-size="16" fill="#2c3e50">コンテキスト</text>
+                        <text x="300" y="290" text-anchor="middle" font-family="Arial" font-size="16" fill="#2c3e50">設定</text>
+                        <line x1="300" y1="220" x2="300" y2="180" stroke="#2ecc71" stroke-width="2" stroke-dasharray="5,5"/>
+                        
+                        <!-- Element 3: Output Format -->
+                        <rect x="380" y="220" width="120" height="120" rx="10" ry="10" fill="#f39c12" opacity="0.2" stroke="#f39c12" stroke-width="2"/>
+                        <text x="440" y="270" text-anchor="middle" font-family="Arial" font-size="16" fill="#2c3e50">出力形式</text>
+                        <text x="440" y="290" text-anchor="middle" font-family="Arial" font-size="16" fill="#2c3e50">の指定</text>
+                        <line x1="440" y1="220" x2="350" y2="180" stroke="#f39c12" stroke-width="2" stroke-dasharray="5,5"/>
+                        
+                        <!-- Element 4: Constraints -->
+                        <rect x="520" y="220" width="120" height="120" rx="10" ry="10" fill="#9b59b6" opacity="0.2" stroke="#9b59b6" stroke-width="2"/>
+                        <text x="580" y="270" text-anchor="middle" font-family="Arial" font-size="16" fill="#2c3e50">制約条件</text>
+                        <text x="580" y="290" text-anchor="middle" font-family="Arial" font-size="16" fill="#2c3e50">の設定</text>
+                        <line x1="580" y1="220" x2="450" y2="180" stroke="#9b59b6" stroke-width="2" stroke-dasharray="5,5"/>
+                        
+                        <!-- Element 1 Details -->
+                        <text x="160" y="320" text-anchor="middle" font-family="Arial" font-size="12" fill="#7f8c8d">具体的なタスク</text>
+                        <text x="160" y="340" text-anchor="middle" font-family="Arial" font-size="12" fill="#7f8c8d">曖昧さの排除</text>
+                        
+                        <!-- Element 2 Details -->
+                        <text x="300" y="320" text-anchor="middle" font-family="Arial" font-size="12" fill="#7f8c8d">背景情報</text>
+                        <text x="300" y="340" text-anchor="middle" font-family="Arial" font-size="12" fill="#7f8c8d">役割の付与</text>
+                        
+                        <!-- Element 3 Details -->
+                        <text x="440" y="320" text-anchor="middle" font-family="Arial" font-size="12" fill="#7f8c8d">構造の指定</text>
+                        <text x="440" y="340" text-anchor="middle" font-family="Arial" font-size="12" fill="#7f8c8d">形式の明示</text>
+                        
+                        <!-- Element 4 Details -->
+                        <text x="580" y="320" text-anchor="middle" font-family="Arial" font-size="12" fill="#7f8c8d">文字数制限</text>
+                        <text x="580" y="340" text-anchor="middle" font-family="Arial" font-size="12" fill="#7f8c8d">専門性レベル</text>
+                    </svg>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>効果的なプロンプトの4要素</h4>
+                    <p>効果的なプロンプトは、「明確な指示」「コンテキスト設定」「出力形式の指定」「制約条件の設定」という4つの基本要素から構成されます。これらの要素をバランスよく組み合わせることで、AIからより質の高い回答を引き出すことができます。</p>
+                </div>
+                
+                <h3>1. 明確な指示</h3>
+                
+                <p>明確な指示とは、AIに対して何をしてほしいのかを具体的かつ明瞭に伝えることです。曖昧さを排除し、具体的なタスクや目的を明示することが重要です。</p>
+                
+                <h4>明確な指示の特徴</h4>
+                <ul>
+                    <li><strong>具体性</strong>：抽象的な表現ではなく、具体的な行動や分析を求める</li>
+                    <li><strong>一義性</strong>：複数の解釈ができないよう、明確な言葉を使用する</li>
+                    <li><strong>焦点</strong>：一度に複数のタスクを依頼する場合は、順序や優先度を明示する</li>
+                    <li><strong>目的の明示</strong>：なぜその情報が必要なのかという背景も含めると効果的</li>
+                </ul>
+                
+                <div class="example-box">
+                    <h4>明確な指示の例</h4>
+                    <p><strong>曖昧な指示：</strong><br>「この契約書を見てください」</p>
+                    <p><strong>明確な指示：</strong><br>「この賃貸借契約書の第10条から第15条に記載されている賃借人の義務について分析し、潜在的なリスクを特定してください」</p>
+                    <p>明確な指示では、対象（賃貸借契約書の特定条項）、タスク（分析と特定）、焦点（賃借人の義務と潜在的リスク）が具体的に示されています。</p>
+                </div>
+                
+                <h3>2. コンテキスト設定</h3>
+                
+                <p>コンテキスト設定とは、AIに対して背景情報を提供したり、特定の役割を与えたりすることで、より適切な文脈で回答を生成できるようにする要素です。</p>
+                
+                <h4>コンテキスト設定の方法</h4>
+                <ul>
+                    <li><strong>背景情報の提供</strong>：状況、前提条件、関連する事実などを説明する</li>
+                    <li><strong>役割の付与</strong>：AIに特定の専門家や立場の視点から回答するよう指示する</li>
+                    <li><strong>想定読者の設定</strong>：回答の対象となる読者層を明示する</li>
+                    <li><strong>前提知識の明確化</strong>：AIが前提とすべき知識や情報を指定する</li>
+                </ul>
+                
+                <div class="example-box">
+                    <h4>コンテキスト設定の例</h4>
+                    <p><strong>コンテキストなし：</strong><br>「この契約条項の問題点を指摘してください」</p>
+                    <p><strong>コンテキストあり：</strong><br>「あなたは企業法務の専門家として、日本の会社法および個人情報保護法に基づき、以下のクラウドサービス利用規約の問題点を指摘してください。この規約は、当社が中小企業向けに提供する予定のサービスで使用されます」</p>
+                    <p>コンテキストを設定することで、AIは適切な法的枠組み（日本法）、専門的視点（企業法務）、対象読者（中小企業）を考慮した回答を生成できます。</p>
+                </div>
+                
+                <h3>3. 出力形式の指定</h3>
+                
+                <p>出力形式の指定とは、AIが生成する回答の構造や形式を明示的に指定することです。これにより、より整理された、使いやすい形式の回答を得ることができます。</p>
+                
+                <h4>出力形式の指定方法</h4>
+                <ul>
+                    <li><strong>構造の指定</strong>：箇条書き、表形式、段落構成などの構造を指定する</li>
+                    <li><strong>セクション分け</strong>：回答を「概要」「詳細分析」「結論」などのセクションに分けるよう指示する</li>
+                    <li><strong>特定のフォーマット</strong>：法的文書、ビジネスレター、メールなど特定のフォーマットを指定する</li>
+                    <li><strong>マークアップ言語</strong>：HTMLやMarkdownなど特定のマークアップ形式での出力を指定する</li>
+                </ul>
+                
+                <div class="example-box">
+                    <h4>出力形式の指定例</h4>
+                    <p><strong>形式指定なし：</strong><br>「この契約書の主要条件を要約してください」</p>
+                    <p><strong>形式指定あり：</strong><br>「この契約書の主要条件を以下の形式で要約してください：<br>
+                    1. 表形式で、左列に条項名、右列に内容の要点<br>
+                    2. 各条項の重要度を高・中・低で評価<br>
+                    3. 最後に200字以内の全体総括」</p>
+                    <p>形式を指定することで、情報が整理され、視覚的にも理解しやすい回答を得ることができます。</p>
+                </div>
+                
+                <h3>4. 制約条件の設定</h3>
+                
+                <p>制約条件の設定とは、AIの回答に特定の制限や条件を課すことです。これにより、より焦点を絞った、目的に合致した回答を得ることができます。</p>
+                
+                <h4>主な制約条件の種類</h4>
+                <ul>
+                    <li><strong>文字数・長さ</strong>：回答の長さや詳細さのレベルを指定する</li>
+                    <li><strong>専門性レベル</strong>：専門家向けか初心者向けかなど、説明の難易度を指定する</li>
+                    <li><strong>使用言語</strong>：特定の用語や表現の使用・回避を指示する</li>
+                    <li><strong>対象範囲</strong>：分析や回答の対象とする範囲を限定する</li>
+                    <li><strong>時間的制約</strong>：特定の時点や期間に基づいた回答を求める</li>
+                </ul>
+                
+                <div class="example-box">
+                    <h4>制約条件の設定例</h4>
+                    <p><strong>制約なし：</strong><br>「個人情報保護法について説明してください」</p>
+                    <p><strong>制約あり：</strong><br>「2023年の改正を反映した個人情報保護法について、法律の専門知識がない中小企業の経営者向けに、500字以内で平易な言葉で説明してください。専門用語を使う場合は必ず簡単な説明を付けてください」</p>
+                    <p>制約条件を設定することで、対象読者（専門知識のない経営者）に適した長さ（500字以内）と難易度（平易な言葉、専門用語の説明付き）の回答を得ることができます。</p>
+                </div>
+                
+                <h2>4つの要素を組み合わせた効果的なプロンプトの例</h2>
+                
+                <p>以下は、4つの基本要素を組み合わせた効果的なプロンプトの例です：</p>
+                
+                <div class="highlight-box">
+                    <h4>法務業務向け効果的プロンプトの例</h4>
+                    <p>「あなたは知的財産権の専門弁護士です（<span style="color:#2ecc71">コンテキスト設定</span>）。添付のソフトウェア開発契約書の第8条（知的財産権）と第9条（秘密保持）を分析し、開発委託者側の立場から見た潜在的なリスクと改善提案を特定してください（<span style="color:#e74c3c">明確な指示</span>）。回答は以下の形式でお願いします：1. 各条項の問題点（箇条書き）、2. リスク評価（高・中・低）、3. 具体的な修正案（<span style="color:#f39c12">出力形式の指定</span>）。法律の専門家ではない経営層向けの説明として、専門用語は最小限に抑え、全体で800字以内にまとめてください（<span style="color:#9b59b6">制約条件の設定</span>）。」</p>
+                </div>
+                
+                <h2>効果的なプロンプト作成のためのチェックリスト</h2>
+                
+                <p>効果的なプロンプトを作成する際に確認すべきポイントをチェックリスト形式でまとめました：</p>
+                
+                <ul>
+                    <li><strong>明確な指示</strong>
+                        <ul>
+                            <li>具体的なタスクや目的を明示しているか</li>
+                            <li>曖昧な表現を避けているか</li>
+                            <li>複数のタスクがある場合、順序や優先度を明示しているか</li>
+                        </ul>
+                    </li>
+                    <li><strong>コンテキスト設定</strong>
+                        <ul>
+                            <li>必要な背景情報を提供しているか</li>
+                            <li>AIに適切な役割を与えているか</li>
+                            <li>想定読者や前提知識を明確にしているか</li>
+                        </ul>
+                    </li>
+                    <li><strong>出力形式の指定</strong>
+                        <ul>
+                            <li>回答の構造や形式を明示しているか</li>
+                            <li>必要なセクション分けを指示しているか</li>
+                            <li>特定のフォーマットが必要な場合、それを明示しているか</li>
+                        </ul>
+                    </li>
+                    <li><strong>制約条件の設定</strong>
+                        <ul>
+                            <li>文字数や詳細さのレベルを指定しているか</li>
+                            <li>専門性レベルや使用言語に関する制約を設けているか</li>
+                            <li>対象範囲や時間的制約を明確にしているか</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div class="blog-navigation">
+                    <a href="what-is-prompt-engineering.html"><i class="fas fa-arrow-left"></i> プロンプトエンジニアリングとは</a>
+                    <a href="prompt-patterns.html">プロンプトパターン <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Topic-based navigation -->
+<div class="blog-topics">
+    <h3>トピック別ブログ記事</h3>
+    <p>他のトピックの記事も読む：</p>
+    <ul>
+        <li><a href="index.html#ai-basics">AI基礎</a></li>
+        <li><a href="index.html#machine-learning">機械学習</a></li>
+        <li><a href="index.html#llm">大規模言語モデル</a></li>
+        <li><a href="index.html#prompt-engineering">プロンプトエンジニアリング</a></li>
+        <li><a href="index.html#ai-services">AIサービス</a></li>
+        <li><a href="index.html#legal-ai-cases">法務AI活用事例</a></li>
+        <li><a href="index.html#ai-ethics">AI倫理と法的課題</a></li>
+    </ul>
+</div>
+
+<!-- Previous/Next navigation -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+                    <p>法務業務の未来を照らす</p>
+                </div>
+                <div class="footer-links">
+                    <h4>リンク</h4>
+                    <ul>
+                        <li><a href="../../index.html">ホーム</a></li>
+                        <li><a href="../../about.html">会社案内</a></li>
+                        <li><a href="../../program.html">研修プログラム</a></li>
+                        <li><a href="../../contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>お問い合わせ</h4>
+                    <p>〒170-6033<br>東京都豊島区東池袋3-1-1<br>サンシャイン60</p>
+                    <p>TEL: 03-1234-5678<br>Email: info@legaltorch.co.jp</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 法務AIナビゲーター by LegalTorch All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

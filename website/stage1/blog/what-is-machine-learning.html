@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>機械学習とは - 法務AIナビゲーター by LegalTorch</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="blog-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">ホーム</a></li>
+                    <li><a href="../../about.html">会社案内</a></li>
+                    <li><a href="../../program.html">研修プログラム</a></li>
+                    <li><a href="../../contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>機械学習とは</h1>
+            <div class="breadcrumbs">
+                <a href="../../index.html">ホーム</a> &gt; 
+                <a href="../../program.html">研修プログラム</a> &gt; 
+                <a href="../index.html">第1段階：AI基礎研修</a> &gt; 
+                <a href="../slides/1-2-ai-concepts.html">AI・機械学習の基本概念</a> &gt;
+                <span>機械学習とは</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="blog-content">
+                <h2>機械学習とは</h2>
+                
+                <p>機械学習は、人工知能（AI）の中核を成す技術であり、コンピュータがデータから学習し、明示的にプログラムされていなくてもパターンを認識し予測を行う能力を指します。従来のプログラミングでは、人間がルールを明確に定義する必要がありましたが、機械学習では、システム自体がデータから自動的にルールを学習します。</p>
+                
+                <div class="highlight-box">
+                    <h4>機械学習の本質</h4>
+                    <p>機械学習の本質は「経験からの学習」です。大量のデータ（経験）を与えることで、コンピュータは徐々にパターンを認識し、新しいデータに対して予測や判断を行えるようになります。これは人間の学習プロセスに似ていますが、コンピュータはより大量のデータを高速に処理できる点が特徴です。</p>
+                </div>
+                
+                <!-- SVG illustration of machine learning process -->
+                <div class="svg-container">
+                    <svg width="700" height="400" viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="blue-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#3498db"/>
+                                <stop offset="100%" stop-color="#2980b9"/>
+                            </linearGradient>
+                            <linearGradient id="green-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#2ecc71"/>
+                                <stop offset="100%" stop-color="#27ae60"/>
+                            </linearGradient>
+                            <linearGradient id="purple-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#9b59b6"/>
+                                <stop offset="100%" stop-color="#8e44ad"/>
+                            </linearGradient>
+                            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feDropShadow dx="3" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.3"/>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Background -->
+                        <rect width="700" height="400" fill="#f8f9fa" rx="10" ry="10"/>
+                        
+                        <!-- Title -->
+                        <text x="350" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2c3e50" text-anchor="middle">機械学習のプロセス</text>
+                        
+                        <!-- Data Input -->
+                        <rect x="50" y="100" width="150" height="200" rx="10" ry="10" fill="url(#blue-grad)" filter="url(#shadow)"/>
+                        <text x="125" y="130" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">データ入力</text>
+                        
+                        <!-- Data symbols -->
+                        <rect x="80" y="150" width="30" height="20" fill="white" opacity="0.8"/>
+                        <rect x="120" y="150" width="30" height="20" fill="white" opacity="0.8"/>
+                        <rect x="80" y="180" width="30" height="20" fill="white" opacity="0.8"/>
+                        <rect x="120" y="180" width="30" height="20" fill="white" opacity="0.8"/>
+                        <rect x="80" y="210" width="30" height="20" fill="white" opacity="0.8"/>
+                        <rect x="120" y="210" width="30" height="20" fill="white" opacity="0.8"/>
+                        <rect x="80" y="240" width="30" height="20" fill="white" opacity="0.8"/>
+                        <rect x="120" y="240" width="30" height="20" fill="white" opacity="0.8"/>
+                        
+                        <!-- Arrow 1 -->
+                        <path d="M200,200 L270,200" stroke="#95a5a6" stroke-width="3" fill="none"/>
+                        <polygon points="265,200 270,195 270,205" fill="#95a5a6"/>
+                        
+                        <!-- Learning Algorithm -->
+                        <rect x="270" y="100" width="150" height="200" rx="10" ry="10" fill="url(#purple-grad)" filter="url(#shadow)"/>
+                        <text x="345" y="130" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">学習アルゴリズム</text>
+                        
+                        <!-- Gear symbols -->
+                        <circle cx="320" cy="180" r="25" fill="white" opacity="0.8"/>
+                        <circle cx="370" cy="220" r="25" fill="white" opacity="0.8"/>
+                        <path d="M320,180 L370,220" stroke="#8e44ad" stroke-width="5"/>
+                        
+                        <!-- Arrow 2 -->
+                        <path d="M420,200 L490,200" stroke="#95a5a6" stroke-width="3" fill="none"/>
+                        <polygon points="485,200 490,195 490,205" fill="#95a5a6"/>
+                        
+                        <!-- Model -->
+                        <rect x="490" y="100" width="150" height="200" rx="10" ry="10" fill="url(#green-grad)" filter="url(#shadow)"/>
+                        <text x="565" y="130" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">モデル</text>
+                        
+                        <!-- Brain symbol -->
+                        <ellipse cx="565" cy="200" rx="50" ry="40" fill="white" opacity="0.8"/>
+                        <path d="M565,170 Q545,190 565,210 Q585,190 565,170" fill="none" stroke="#27ae60" stroke-width="3"/>
+                        
+                        <!-- Process labels -->
+                        <text x="125" y="330" font-family="Arial, sans-serif" font-size="14" fill="#2c3e50" text-anchor="middle">トレーニングデータ</text>
+                        <text x="345" y="330" font-family="Arial, sans-serif" font-size="14" fill="#2c3e50" text-anchor="middle">パターン認識</text>
+                        <text x="565" y="330" font-family="Arial, sans-serif" font-size="14" fill="#2c3e50" text-anchor="middle">予測・判断</text>
+                    </svg>
+                </div>
+                
+                <h3>機械学習と従来のプログラミングの違い</h3>
+                
+                <p>従来のプログラミングでは、開発者がルールを明示的に定義し、そのルールに基づいてコンピュータが処理を行います。一方、機械学習では、データを与えることでコンピュータ自身がルールを学習します。</p>
+                
+                <div class="blog-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>従来のプログラミング</th>
+                                <th>機械学習</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>人間がルールを明示的に定義</td>
+                                <td>データからルールを自動的に学習</td>
+                            </tr>
+                            <tr>
+                                <td>新しい状況に対応するには手動でコードを更新</td>
+                                <td>新しいデータから継続的に学習可能</td>
+                            </tr>
+                            <tr>
+                                <td>ルールが複雑になると実装が困難</td>
+                                <td>複雑なパターンも大量のデータから学習可能</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>法務分野での機械学習の可能性</h3>
+                
+                <p>機械学習は法務分野において、文書分析、パターン認識、予測モデルなど様々な形で活用できます。例えば、大量の判例から類似事例を検索したり、契約書の条項を自動分類したりすることが可能です。</p>
+                
+                <div class="example-box">
+                    <h4>法務分野での機械学習応用例</h4>
+                    <ul>
+                        <li><strong>文書分類</strong>：契約書や法的文書を種類別に自動分類</li>
+                        <li><strong>情報抽出</strong>：契約書から重要条項や日付などの情報を自動抽出</li>
+                        <li><strong>予測分析</strong>：過去の判例データから訴訟結果を予測</li>
+                        <li><strong>異常検知</strong>：通常とは異なる契約条項や潜在的リスクを検出</li>
+                    </ul>
+                </div>
+                
+                <div class="blog-navigation">
+                    <a href="what-is-ai.html">前の記事：AIとは何か</a>
+                    <a href="machine-learning-types.html">次の記事：機械学習の種類</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Topic-based navigation -->
+<div class="blog-topics">
+    <h3>トピック別ブログ記事</h3>
+    <p>他のトピックの記事も読む：</p>
+    <ul>
+        <li><a href="index.html#ai-basics">AI基礎</a></li>
+        <li><a href="index.html#machine-learning">機械学習</a></li>
+        <li><a href="index.html#llm">大規模言語モデル</a></li>
+        <li><a href="index.html#prompt-engineering">プロンプトエンジニアリング</a></li>
+        <li><a href="index.html#ai-services">AIサービス</a></li>
+        <li><a href="index.html#legal-ai-cases">法務AI活用事例</a></li>
+        <li><a href="index.html#ai-ethics">AI倫理と法的課題</a></li>
+    </ul>
+</div>
+
+<!-- Previous/Next navigation -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+                    <p>法務業務の未来を照らす</p>
+                </div>
+                <div class="footer-links">
+                    <h4>リンク</h4>
+                    <ul>
+                        <li><a href="../../index.html">ホーム</a></li>
+                        <li><a href="../../about.html">会社案内</a></li>
+                        <li><a href="../../program.html">研修プログラム</a></li>
+                        <li><a href="../../contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>お問い合わせ</h4>
+                    <p>〒170-6033<br>東京都豊島区東池袋3-1-1<br>サンシャイン60</p>
+                    <p>TEL: 03-1234-5678<br>Email: info@legaltorch.co.jp</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 法務AIナビゲーター by LegalTorch All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>
