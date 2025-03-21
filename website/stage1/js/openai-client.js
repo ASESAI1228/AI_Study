@@ -68,7 +68,7 @@ async function createRealGradingAssessment(exerciseType, answers, updateProgress
         'Authorization': `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
-        model: 'gpt-4o-latest',
+        model: 'chatgpt-4o-latest',  // 指定されたモデル名を使用
         messages: [
           { 
             role: 'system', 
