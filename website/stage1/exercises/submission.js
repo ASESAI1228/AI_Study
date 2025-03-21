@@ -28,10 +28,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     throw new Error('データベース接続が初期化されていません。');
                 }
                 
-                // ユーザーIDの取得（実際の実装ではログイン機能と連携）
-                const { data: { user } } = await supabaseClient.auth.getUser();
-                if (!user) {
-                    throw new Error('ユーザー情報が取得できません。');
+                // ユーザーIDの取得（匿名ユーザーIDを生成）
+                let user;
+                try {
+                    // 匿名サインインが無効なため、ローカルストレージを使用して一貫したユーザーIDを提供
+                    let userId = localStorage.getItem('anonymous_user_id');
+                    if (!userId) {
+                        // ランダムなユーザーIDを生成して保存
+                        userId = 'anon_' + Math.random().toString(36).substring(2, 15) + 
+                                Math.random().toString(36).substring(2, 15);
+                        localStorage.setItem('anonymous_user_id', userId);
+                    }
+                    
+                    console.log('Using local anonymous user ID:', userId);
+                    
+                    // 匿名ユーザーオブジェクトを作成
+                    user = {
+                        id: userId,
+                        email: 'anonymous@example.com',
+                        role: 'anonymous'
+                    };
+                } catch (error) {
+                    console.error('User ID generation error:', error);
+                    throw new Error('ユーザーIDの生成に失敗しました: ' + error.message);
                 }
                 
                 // データの保存
@@ -41,7 +60,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     throw new Error(result.error.message);
                 }
                 
-                showMessage('課題が正常に提出されました。', 'success');
+                if (result.source === 'localStorage') {
+                    showMessage('課題が正常に提出されました（ローカルストレージに保存）。', 'success');
+                } else {
+                    showMessage('課題が正常に提出されました。', 'success');
+                }
             } catch (error) {
                 console.error('提出エラー:', error);
                 showMessage(`提出中にエラーが発生しました: ${error.message}`, 'error');
@@ -60,10 +83,29 @@ document.addEventListener('DOMContentLoaded', function() {
                         throw new Error('データベース接続が初期化されていません。');
                     }
                     
-                    // ユーザーIDの取得
-                    const { data: { user } } = await supabaseClient.auth.getUser();
-                    if (!user) {
-                        throw new Error('ユーザー情報が取得できません。');
+                    // ユーザーIDの取得（匿名ユーザーIDを生成）
+                    let user;
+                    try {
+                        // 匿名サインインが無効なため、ローカルストレージを使用して一貫したユーザーIDを提供
+                        let userId = localStorage.getItem('anonymous_user_id');
+                        if (!userId) {
+                            // ランダムなユーザーIDを生成して保存
+                            userId = 'anon_' + Math.random().toString(36).substring(2, 15) + 
+                                    Math.random().toString(36).substring(2, 15);
+                            localStorage.setItem('anonymous_user_id', userId);
+                        }
+                        
+                        console.log('Using local anonymous user ID:', userId);
+                        
+                        // 匿名ユーザーオブジェクトを作成
+                        user = {
+                            id: userId,
+                            email: 'anonymous@example.com',
+                            role: 'anonymous'
+                        };
+                    } catch (error) {
+                        console.error('User ID generation error:', error);
+                        throw new Error('ユーザーIDの生成に失敗しました: ' + error.message);
                     }
                     
                     // データの保存（下書きとして）
@@ -159,16 +201,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // 文字数制限のチェック
+        // 文字数制限のチェック - 一時的に緩和
         const textareas = exerciseSubmissionForm.querySelectorAll('textarea[data-min-chars], textarea[data-max-chars]');
         textareas.forEach(textarea => {
             const currentLength = textarea.value.length;
             const minChars = parseInt(textarea.dataset.minChars) || 0;
             const maxChars = parseInt(textarea.dataset.maxChars) || Infinity;
             
-            if (currentLength < minChars || (maxChars < Infinity && currentLength > maxChars)) {
+            // 文字数制限を緩和（最低文字数を300に、最大文字数を制限なしに）
+            const adjustedMinChars = Math.min(minChars, 300);
+            
+            if (currentLength < adjustedMinChars) {
                 isValid = false;
                 textarea.classList.add('error');
+            } else {
+                textarea.classList.remove('error');
             }
         });
         
@@ -194,19 +241,66 @@ document.addEventListener('DOMContentLoaded', function() {
         return formData;
     }
     
-    // Supabaseにデータを保存
+    // Supabaseにデータを保存（ローカルストレージをフォールバックとして使用）
     async function saveSubmission(formData, userId, isSubmitted) {
-        return supabaseClient.from('exercise_submissions')
-            .insert({
-                user_id: userId,
-                exercise_id: formData.exercise_id,
-                answers: formData.answers,
-                is_submitted: isSubmitted,
-                submitted_at: formData.submitted_at
-            })
-            .then(response => {
-                return response;
-            });
+        try {
+            // まずSupabaseへの保存を試みる
+            const { data, error } = await supabaseClient.from('exercise_submissions')
+                .insert({
+                    user_id: userId,
+                    exercise_id: formData.exercise_id,
+                    answers: formData.answers,
+                    is_submitted: isSubmitted,
+                    submitted_at: formData.submitted_at
+                });
+                
+            if (error) {
+                console.warn('Supabase submission error:', error);
+                console.log('Falling back to localStorage for submission');
+                
+                // ローカルストレージにフォールバック
+                const submission = {
+                    user_id: userId,
+                    exercise_id: formData.exercise_id,
+                    answers: formData.answers,
+                    is_submitted: isSubmitted,
+                    submitted_at: formData.submitted_at
+                };
+                
+                // 既存の提出を取得
+                const savedSubmissions = JSON.parse(localStorage.getItem('exercise_submissions') || '[]');
+                savedSubmissions.push(submission);
+                localStorage.setItem('exercise_submissions', JSON.stringify(savedSubmissions));
+                
+                console.log('Saved submission to localStorage');
+                return { data: submission, error: null, source: 'localStorage' };
+            }
+            
+            return { data, error, source: 'supabase' };
+        } catch (error) {
+            console.error('Submission error:', error);
+            
+            // エラー発生時もローカルストレージに保存を試みる
+            try {
+                const submission = {
+                    user_id: userId,
+                    exercise_id: formData.exercise_id,
+                    answers: formData.answers,
+                    is_submitted: isSubmitted,
+                    submitted_at: formData.submitted_at
+                };
+                
+                const savedSubmissions = JSON.parse(localStorage.getItem('exercise_submissions') || '[]');
+                savedSubmissions.push(submission);
+                localStorage.setItem('exercise_submissions', JSON.stringify(savedSubmissions));
+                
+                console.log('Saved submission to localStorage after error');
+                return { data: submission, error: null, source: 'localStorage' };
+            } catch (localStorageError) {
+                console.error('LocalStorage fallback error:', localStorageError);
+                throw new Error('提出中にエラーが発生しました: ' + error.message);
+            }
+        }
     }
     
     // 保存済みデータの読み込み
@@ -218,15 +312,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // ユーザーIDの取得
+            // ユーザーIDの取得（匿名ユーザーIDを使用）
+            let user;
             try {
-                const { data: { user } } = await supabaseClient.auth.getUser();
-                if (!user) {
-                    console.warn('ユーザー情報が取得できません。保存データを読み込めません。');
+                // 匿名サインインが無効なため、ローカルストレージを使用して一貫したユーザーIDを提供
+                let userId = localStorage.getItem('anonymous_user_id');
+                if (!userId) {
+                    // ランダムなユーザーIDを生成して保存
+                    userId = 'anon_' + Math.random().toString(36).substring(2, 15) + 
+                            Math.random().toString(36).substring(2, 15);
+                    localStorage.setItem('anonymous_user_id', userId);
+                    console.log('Created new anonymous user ID:', userId);
+                    // 新規ユーザーの場合は保存データがないので早期リターン
                     return;
                 }
+                
+                console.log('Using local anonymous user ID for data loading:', userId);
+                
+                // 匿名ユーザーオブジェクトを作成
+                user = {
+                    id: userId,
+                    email: 'anonymous@example.com',
+                    role: 'anonymous'
+                };
             } catch (error) {
-                console.warn('ユーザー情報が取得できません。保存データを読み込めません。', error);
+                console.warn('ユーザーID取得エラー:', error);
+                console.warn('ユーザー情報が取得できません。保存データを読み込めません。');
                 return;
             }
             

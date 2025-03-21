@@ -5,11 +5,11 @@
 
 // Supabase接続情報
 // 本番環境では環境変数、テスト環境では直接設定された値を使用
-const SUPABASE_URL = typeof process !== 'undefined' && process.env && process.env.SUPABASE_URL || 'https://your-supabase-url.supabase.co';
-const SUPABASE_KEY = typeof process !== 'undefined' && process.env && process.env.SUPABASE_ANON_KEY || 'your-supabase-anon-key';
+const SUPABASE_URL = window.SUPABASE___SUPABASE_URL || 'https://your-supabase-url.supabase.co';
+const SUPABASE_KEY = window.SUPABASE___SUPABASE_ANON_KEY || 'your-supabase-anon-key';
 
 // モックモードフラグ（Supabaseへの実際の接続ができない場合にローカルストレージを使用）
-let useMockMode = true;
+let useMockMode = false;
 
 /**
  * モッククライアントを作成する関数
