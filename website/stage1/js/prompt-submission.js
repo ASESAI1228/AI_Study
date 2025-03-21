@@ -50,9 +50,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const selectedExercise = exerciseSelect.value;
                 
                 // 送信データの作成
+                let user;
+                try {
+                    const { data } = await supabaseClient.auth.getUser();
+                    user = data.user;
+                } catch (error) {
+                    throw new Error('ユーザー情報が取得できません: ' + error.message);
+                }
+
                 const submissionData = {
                     exercise_type: selectedExercise,
-                    user_id: supabaseClient.auth.user().id,
+                    user_id: user ? user.id : 'anonymous',
                     submission_date: new Date().toISOString(),
                     content: {}
                 };

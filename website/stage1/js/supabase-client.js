@@ -67,8 +67,17 @@ function createMockClient() {
         }),
         auth: {
             user: () => {
-                // ダミーユーザー情報を返す
+                // ダミーユーザー情報を返す（旧APIとの互換性のため）
                 return { id: 'dummy-user-id', email: 'user@example.com' };
+            },
+            getUser: () => {
+                // Supabase v2 API互換のgetUser実装
+                return Promise.resolve({
+                    data: {
+                        user: { id: 'dummy-user-id', email: 'user@example.com' }
+                    },
+                    error: null
+                });
             }
         }
     };
