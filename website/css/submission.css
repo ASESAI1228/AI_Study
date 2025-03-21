@@ -112,3 +112,132 @@
 .character-counter.error {
     color: #dc3545;
 }
+
+/* Grading Results Styles */
+.grading-results {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grading-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.grading-title {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.overall-score {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.score-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.pass-badge {
+    background-color: #4caf50;
+}
+
+.fail-badge {
+    background-color: #f44336;
+}
+
+.score-details {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.feedback-section {
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+.feedback-section h4 {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.positive-feedback {
+    border-left: 4px solid #4caf50;
+}
+
+.improvement-feedback {
+    border-left: 4px solid #ff9800;
+}
+
+.goals-feedback {
+    border-left: 4px solid #2196f3;
+}
+
+.feedback-content {
+    color: #495057;
+    line-height: 1.6;
+}
+
+.question-feedback {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e9ecef;
+}
+
+.question-feedback:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.question-title {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+/* Grading Progress Bar */
+.grading-progress {
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 4px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 10px;
+    background: linear-gradient(135deg, #4a90e2 0%, #8e44ad 100%);
+    transition: width 0.3s ease;
+}
+
+.progress-status {
+    font-size: 0.85rem;
+    color: #6c757d;
+    text-align: center;
+    margin-top: 5px;
+}

@@ -60,10 +60,55 @@ document.addEventListener('DOMContentLoaded', function() {
                     throw new Error(result.error.message);
                 }
                 
-                if (result.source === 'localStorage') {
-                    showMessage('課題が正常に提出されました（ローカルストレージに保存）。', 'success');
-                } else {
-                    showMessage('課題が正常に提出されました。', 'success');
+                // 採点プロセスを開始
+                try {
+                    // 採点進捗表示のための要素を作成
+                    const gradingProgressElement = document.createElement('div');
+                    gradingProgressElement.className = 'grading-progress';
+                    gradingProgressElement.innerHTML = `
+                        <div class="progress-bar" style="width: 0%"></div>
+                        <div class="progress-status">採点を準備しています...</div>
+                    `;
+                    
+                    // フォームの下に挿入
+                    exerciseSubmissionForm.after(gradingProgressElement);
+                    showMessage('課題が提出されました。AIによる採点を行っています...', 'info');
+                    
+                    // 進捗更新関数
+                    const updateProgress = (percent, statusText) => {
+                        const progressBar = gradingProgressElement.querySelector('.progress-bar');
+                        const progressStatus = gradingProgressElement.querySelector('.progress-status');
+                        
+                        progressBar.style.width = `${percent}%`;
+                        progressStatus.textContent = statusText;
+                    };
+                    
+                    // OpenAIクライアントが初期化されているか確認
+                    if (!openaiClient) {
+                        throw new Error('AIグレーディングシステムの初期化に失敗しました。');
+                    }
+                    
+                    // 採点を実行
+                    const exerciseId = exerciseSubmissionForm.dataset.exerciseId;
+                    const gradingResult = await openaiClient.createGradingAssessment(
+                        exerciseId, 
+                        formData.answers,
+                        updateProgress
+                    );
+                    
+                    // 採点結果表示
+                    gradingProgressElement.remove();
+                    displayGradingResults(gradingResult, exerciseId);
+                    
+                } catch (gradingError) {
+                    console.error('採点エラー:', gradingError);
+                    showMessage(`採点中にエラーが発生しました: ${gradingError.message}`, 'error');
+                    
+                    if (result.source === 'localStorage') {
+                        showMessage('課題は正常に提出されましたが、採点できませんでした（ローカルストレージに保存）。', 'success');
+                    } else {
+                        showMessage('課題は正常に提出されましたが、採点できませんでした。', 'success');
+                    }
                 }
             } catch (error) {
                 console.error('提出エラー:', error);
@@ -421,5 +466,89 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => statusElement.remove(), 500);
             }, 5000);
         }
+    }
+    
+    // 採点結果表示関数
+    function displayGradingResults(results, exerciseType) {
+        // 既存の採点結果があれば削除
+        const existingResults = document.querySelector('.grading-results');
+        if (existingResults) {
+            existingResults.remove();
+        }
+        
+        // 採点結果コンテナ作成
+        const resultsContainer = document.createElement('div');
+        resultsContainer.className = 'grading-results';
+        
+        // ヘッダー部分（タイトルと総合点）
+        const headerHTML = `
+            <div class="grading-header">
+                <h3 class="grading-title">AI採点結果</h3>
+                <div class="overall-score">
+                    <div class="score-circle ${results.passed ? 'pass-badge' : 'fail-badge'}">
+                        ${results.overallScore}
+                    </div>
+                    <div class="score-details">
+                        <p>10点満点中 ${results.overallScore}点</p>
+                        <p>合格ライン: ${results.passingThreshold}点</p>
+                        <p>${results.passed ? '合格おめでとうございます！' : '再提出をお勧めします'}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // 各質問のフィードバック
+        let feedbackHTML = '';
+        
+        // 質問のタイトルマッピング
+        const questionTitles = {
+            'chatgpt-basics': {
+                'usefulness': 'ChatGPTの法務業務における有用性',
+                'accuracy': '回答の正確性と信頼性',
+                'effective_prompts': '効果的な質問・指示の出し方',
+                'limitations': '法務担当者として認識すべき限界と注意点'
+            }
+            // 他の演習タイプの質問タイトル
+        };
+        
+        // 各フィードバックを処理
+        results.feedbacks.forEach(feedback => {
+            const questionTitle = questionTitles[exerciseType] && 
+                                questionTitles[exerciseType][feedback.questionId] || 
+                                `質問: ${feedback.questionId}`;
+            
+            feedbackHTML += `
+                <div class="question-feedback">
+                    <h4 class="question-title">${questionTitle}</h4>
+                    
+                    <div class="feedback-section positive-feedback">
+                        <h4>良かった点</h4>
+                        <div class="feedback-content">${feedback.positivePoints}</div>
+                    </div>
+                    
+                    <div class="feedback-section improvement-feedback">
+                        <h4>改善すべき点</h4>
+                        <div class="feedback-content">${feedback.improvementPoints}</div>
+                    </div>
+                    
+                    <div class="feedback-section goals-feedback">
+                        <h4>今後の学習目標</h4>
+                        <div class="feedback-content">${feedback.learningGoals}</div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        // 最終的なHTMLをセット
+        resultsContainer.innerHTML = headerHTML + feedbackHTML;
+        
+        // フォームの後に挿入
+        exerciseSubmissionForm.after(resultsContainer);
+        
+        // スクロールして採点結果を表示
+        resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // 採点成功メッセージ
+        showMessage('AIによる採点が完了しました。', 'success');
     }
 });
