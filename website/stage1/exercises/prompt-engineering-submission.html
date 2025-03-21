@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロンプト作成演習 課題提出 - 法務AIナビゲーター by LegalTorch</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/submission.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">ホーム</a></li>
+                    <li><a href="../../about.html">会社案内</a></li>
+                    <li><a href="../../program.html">研修プログラム</a></li>
+                    <li><a href="../../contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>プロンプト作成演習 課題提出</h1>
+            <div class="breadcrumbs">
+                <a href="../../index.html">ホーム</a> &gt; 
+                <a href="../../program.html">研修プログラム</a> &gt; 
+                <a href="../index.html">第1段階：AI基礎研修</a> &gt; 
+                <a href="prompt-engineering.html">プロンプト作成演習</a> &gt;
+                <span>課題提出</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="submission-content">
+                <h2>課題提出フォーム</h2>
+                <p>以下のフォームに回答を入力してください。演習を選択し、必要な情報を入力後、「提出する」ボタンをクリックしてください。</p>
+                
+                <div class="exercise-selector">
+                    <label for="exercise-select">演習を選択してください：</label>
+                    <select id="exercise-select" name="exercise_type">
+                        <option value="prompt-engineering-ex1">演習1：基本的なプロンプト設計</option>
+                        <option value="prompt-engineering-ex2">演習2：プロンプトパターンの適用</option>
+                        <option value="prompt-engineering-ex3">演習3：プロンプトの反復的改善</option>
+                        <option value="prompt-engineering-ex4">演習4：実務向けプロンプトライブラリの作成</option>
+                    </select>
+                    <script>
+                        // 演習タイプの切り替え時にフォームをリセット
+                        document.getElementById('exercise-select').addEventListener('change', function() {
+                            // 非表示フィールドのrequired属性を削除
+                            document.querySelectorAll('textarea[required]').forEach(function(textarea) {
+                                if (textarea.closest('.exercise-form-section').style.display === 'none') {
+                                    textarea.removeAttribute('required');
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+                
+                <form id="exerciseSubmissionForm" class="submission-form" data-exercise-id="prompt-engineering-ex1" novalidate>
+                    <!-- 演習1のフォーム -->
+                    <div id="exercise1-section" class="exercise-form-section">
+                        <h3>演習1：基本的なプロンプト設計</h3>
+                        
+                        <div class="form-section">
+                            <h4>タスク1：契約書の重要条項の抽出と分析</h4>
+                            <div class="form-group">
+                                <label for="task1_prompt">作成したプロンプト：<span class="required">*</span></label>
+                                <textarea id="task1_prompt" name="task1_prompt" data-question-id="task1_prompt" data-min-chars="100" data-max-chars="1000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 1000文字</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="task1_result">実行結果：<span class="required">*</span></label>
+                                <textarea id="task1_result" name="task1_result" data-question-id="task1_result" data-min-chars="100" data-max-chars="2000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 2000文字</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>タスク2：法的質問への回答</h4>
+                            <div class="form-group">
+                                <label for="task2_prompt">作成したプロンプト：<span class="required">*</span></label>
+                                <textarea id="task2_prompt" name="task2_prompt" data-question-id="task2_prompt" data-min-chars="100" data-max-chars="1000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 1000文字</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="task2_result">実行結果：<span class="required">*</span></label>
+                                <textarea id="task2_result" name="task2_result" data-question-id="task2_result" data-min-chars="100" data-max-chars="2000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 2000文字</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>タスク3：判例の要約と重要ポイントの抽出</h4>
+                            <div class="form-group">
+                                <label for="task3_prompt">作成したプロンプト：<span class="required">*</span></label>
+                                <textarea id="task3_prompt" name="task3_prompt" data-question-id="task3_prompt" data-min-chars="100" data-max-chars="1000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 1000文字</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="task3_result">実行結果：<span class="required">*</span></label>
+                                <textarea id="task3_result" name="task3_result" data-question-id="task3_result" data-min-chars="100" data-max-chars="2000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 2000文字</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>結果の評価と改善点の考察</h4>
+                            <div class="form-group">
+                                <label for="exercise1_evaluation">結果の評価と改善点の考察（100-200字程度）：<span class="required">*</span></label>
+                                <textarea id="exercise1_evaluation" name="exercise1_evaluation" data-question-id="exercise1_evaluation" data-min-chars="100" data-max-chars="400" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 400文字</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 演習2のフォーム -->
+                    <div id="exercise2-section" class="exercise-form-section" style="display: none;">
+                        <h3>演習2：プロンプトパターンの適用</h3>
+                        
+                        <div class="form-section">
+                            <h4>ロールプロンプト</h4>
+                            <div class="form-group">
+                                <label for="role_prompt">作成したプロンプト：<span class="required">*</span></label>
+                                <textarea id="role_prompt" name="role_prompt" data-question-id="role_prompt" data-min-chars="100" data-max-chars="1000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 1000文字</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="role_result">実行結果：<span class="required">*</span></label>
+                                <textarea id="role_result" name="role_result" data-question-id="role_result" data-min-chars="100" data-max-chars="2000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 2000文字</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>ステップバイステップ指示</h4>
+                            <div class="form-group">
+                                <label for="step_prompt">作成したプロンプト：<span class="required">*</span></label>
+                                <textarea id="step_prompt" name="step_prompt" data-question-id="step_prompt" data-min-chars="100" data-max-chars="1000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 1000文字</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="step_result">実行結果：<span class="required">*</span></label>
+                                <textarea id="step_result" name="step_result" data-question-id="step_result" data-min-chars="100" data-max-chars="2000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 2000文字</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>フューショット学習（例示）</h4>
+                            <div class="form-group">
+                                <label for="few_shot_prompt">作成したプロンプト：<span class="required">*</span></label>
+                                <textarea id="few_shot_prompt" name="few_shot_prompt" data-question-id="few_shot_prompt" data-min-chars="100" data-max-chars="1000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 1000文字</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="few_shot_result">実行結果：<span class="required">*</span></label>
+                                <textarea id="few_shot_result" name="few_shot_result" data-question-id="few_shot_result" data-min-chars="100" data-max-chars="2000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 2000文字</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>パターン適用の効果分析</h4>
+                            <div class="form-group">
+                                <label for="pattern_analysis">パターン適用の効果分析（200-300字程度）：<span class="required">*</span></label>
+                                <textarea id="pattern_analysis" name="pattern_analysis" data-question-id="pattern_analysis" data-min-chars="200" data-max-chars="500" required></textarea>
+                                <div class="error-message">この項目は必須です。200文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 500文字</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 演習3のフォーム -->
+                    <div id="exercise3-section" class="exercise-form-section" style="display: none;">
+                        <h3>演習3：プロンプトの反復的改善</h3>
+                        
+                        <div class="form-section">
+                            <h4>初期プロンプト</h4>
+                            <div class="form-group">
+                                <label for="initial_prompt">初期プロンプト：<span class="required">*</span></label>
+                                <textarea id="initial_prompt" name="initial_prompt" data-question-id="initial_prompt" data-min-chars="100" data-max-chars="1000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 1000文字</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="initial_result">実行結果：<span class="required">*</span></label>
+                                <textarea id="initial_result" name="initial_result" data-question-id="initial_result" data-min-chars="100" data-max-chars="2000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 2000文字</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>改善プロンプト</h4>
+                            <div class="form-group">
+                                <label for="improved_prompt">改善したプロンプト：<span class="required">*</span></label>
+                                <textarea id="improved_prompt" name="improved_prompt" data-question-id="improved_prompt" data-min-chars="100" data-max-chars="1000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 1000文字</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="improved_result">実行結果：<span class="required">*</span></label>
+                                <textarea id="improved_result" name="improved_result" data-question-id="improved_result" data-min-chars="100" data-max-chars="2000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 2000文字</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>最終プロンプト</h4>
+                            <div class="form-group">
+                                <label for="final_prompt">最終プロンプト：<span class="required">*</span></label>
+                                <textarea id="final_prompt" name="final_prompt" data-question-id="final_prompt" data-min-chars="100" data-max-chars="1000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 1000文字</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="final_result">実行結果：<span class="required">*</span></label>
+                                <textarea id="final_result" name="final_result" data-question-id="final_result" data-min-chars="100" data-max-chars="2000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 2000文字</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>改善プロセスの説明と学んだ教訓</h4>
+                            <div class="form-group">
+                                <label for="improvement_process">改善プロセスの説明と学んだ教訓（300-400字程度）：<span class="required">*</span></label>
+                                <textarea id="improvement_process" name="improvement_process" data-question-id="improvement_process" data-min-chars="300" data-max-chars="600" required></textarea>
+                                <div class="error-message">この項目は必須です。300文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 600文字</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 演習4のフォーム -->
+                    <div id="exercise4-section" class="exercise-form-section" style="display: none;">
+                        <h3>演習4：実務向けプロンプトライブラリの作成</h3>
+                        
+                        <div class="form-section">
+                            <h4>テンプレート1</h4>
+                            <div class="form-group">
+                                <label for="template1">プロンプトテンプレート：<span class="required">*</span></label>
+                                <textarea id="template1" name="template1" data-question-id="template1" data-min-chars="100" data-max-chars="1000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 1000文字</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="template1_purpose">使用目的と適用シナリオ：<span class="required">*</span></label>
+                                <textarea id="template1_purpose" name="template1_purpose" data-question-id="template1_purpose" data-min-chars="50" data-max-chars="500" required></textarea>
+                                <div class="error-message">この項目は必須です。50文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 500文字</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>テンプレート2</h4>
+                            <div class="form-group">
+                                <label for="template2">プロンプトテンプレート：<span class="required">*</span></label>
+                                <textarea id="template2" name="template2" data-question-id="template2" data-min-chars="100" data-max-chars="1000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 1000文字</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="template2_purpose">使用目的と適用シナリオ：<span class="required">*</span></label>
+                                <textarea id="template2_purpose" name="template2_purpose" data-question-id="template2_purpose" data-min-chars="50" data-max-chars="500" required></textarea>
+                                <div class="error-message">この項目は必須です。50文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 500文字</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>テンプレート3</h4>
+                            <div class="form-group">
+                                <label for="template3">プロンプトテンプレート：<span class="required">*</span></label>
+                                <textarea id="template3" name="template3" data-question-id="template3" data-min-chars="100" data-max-chars="1000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 1000文字</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="template3_purpose">使用目的と適用シナリオ：<span class="required">*</span></label>
+                                <textarea id="template3_purpose" name="template3_purpose" data-question-id="template3_purpose" data-min-chars="50" data-max-chars="500" required></textarea>
+                                <div class="error-message">この項目は必須です。50文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 500文字</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>テンプレート4</h4>
+                            <div class="form-group">
+                                <label for="template4">プロンプトテンプレート：<span class="required">*</span></label>
+                                <textarea id="template4" name="template4" data-question-id="template4" data-min-chars="100" data-max-chars="1000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 1000文字</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="template4_purpose">使用目的と適用シナリオ：<span class="required">*</span></label>
+                                <textarea id="template4_purpose" name="template4_purpose" data-question-id="template4_purpose" data-min-chars="50" data-max-chars="500" required></textarea>
+                                <div class="error-message">この項目は必須です。50文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 500文字</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>テンプレート5</h4>
+                            <div class="form-group">
+                                <label for="template5">プロンプトテンプレート：<span class="required">*</span></label>
+                                <textarea id="template5" name="template5" data-question-id="template5" data-min-chars="100" data-max-chars="1000" required></textarea>
+                                <div class="error-message">この項目は必須です。100文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 1000文字</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="template5_purpose">使用目的と適用シナリオ：<span class="required">*</span></label>
+                                <textarea id="template5_purpose" name="template5_purpose" data-question-id="template5_purpose" data-min-chars="50" data-max-chars="500" required></textarea>
+                                <div class="error-message">この項目は必須です。50文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 500文字</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>ライブラリの活用方法</h4>
+                            <div class="form-group">
+                                <label for="library_usage">ライブラリの活用方法の説明（200-300字程度）：<span class="required">*</span></label>
+                                <textarea id="library_usage" name="library_usage" data-question-id="library_usage" data-min-chars="200" data-max-chars="500" required></textarea>
+                                <div class="error-message">この項目は必須です。200文字以上で入力してください。</div>
+                                <div class="character-counter">0 / 500文字</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary">提出する</button>
+                        <button type="button" class="btn secondary" id="saveProgress">途中経過を保存</button>
+                    </div>
+                </form>
+                
+                <div id="grading-progress" class="grading-progress" style="display: none;">
+                    <div class="progress-bar"></div>
+                    <div class="progress-status">採点中...</div>
+                </div>
+                
+                <div id="grading-results" class="grading-results" style="display: none;">
+                    <!-- 採点結果がここに表示されます -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../../images/LegalTorch.jpg" alt="法務AIナビゲーター Logo">
+                    <p>法務業務の未来を照らす</p>
+                </div>
+                <div class="footer-links">
+                    <h4>リンク</h4>
+                    <ul>
+                        <li><a href="../../index.html">ホーム</a></li>
+                        <li><a href="../../about.html">会社案内</a></li>
+                        <li><a href="../../program.html">研修プログラム</a></li>
+                        <li><a href="../../contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>お問い合わせ</h4>
+                    <p>〒170-6033<br>東京都豊島区東池袋3-1-1<br>サンシャイン60</p>
+                    <p>TEL: 03-1234-5678<br>Email: info@legaltorch.co.jp</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 法務AIナビゲーター by LegalTorch All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="/env-config.js"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script src="../js/openai-client.js"></script>
+    <script src="prompt-submission-handler.js"></script>
+</body>
+</html>
