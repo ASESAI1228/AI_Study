@@ -49,18 +49,23 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const formData = new FormData(exerciseForm);
                 const selectedExercise = exerciseSelect.value;
                 
-                // 送信データの作成
-                let user;
+                // 送信データの作成（匿名ユーザーをサポート）
+                let userId = 'anonymous';
                 try {
                     const { data } = await supabaseClient.auth.getUser();
-                    user = data.user;
+                    if (data && data.user) {
+                        userId = data.user.id;
+                        console.log('Using authenticated user ID:', userId);
+                    } else {
+                        console.log('No authenticated user found, using anonymous ID');
+                    }
                 } catch (error) {
-                    throw new Error('ユーザー情報が取得できません: ' + error.message);
+                    console.warn('Failed to get user info, using anonymous ID:', error.message);
                 }
 
                 const submissionData = {
                     exercise_type: selectedExercise,
-                    user_id: user ? user.id : 'anonymous',
+                    user_id: userId,
                     submission_date: new Date().toISOString(),
                     content: {}
                 };

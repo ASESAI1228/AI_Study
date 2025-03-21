@@ -71,10 +71,24 @@ function createMockClient() {
                 return { id: 'dummy-user-id', email: 'user@example.com' };
             },
             getUser: () => {
-                // Supabase v2 API互換のgetUser実装
+                console.log('[Mock] Getting user information');
+                // 常に成功するダミーユーザーを返す
                 return Promise.resolve({
                     data: {
                         user: { id: 'dummy-user-id', email: 'user@example.com' }
+                    },
+                    error: null
+                });
+            },
+            getSession: () => {
+                console.log('[Mock] Getting session information');
+                // セッション情報も同様に実装
+                return Promise.resolve({
+                    data: {
+                        session: { 
+                            user: { id: 'dummy-user-id', email: 'user@example.com' },
+                            expires_at: Date.now() + 3600
+                        }
                     },
                     error: null
                 });
@@ -92,22 +106,28 @@ async function initSupabase() {
     
     try {
         // Supabase URLとキーが有効な値か確認
-        if (SUPABASE_URL !== 'https://your-supabase-url.supabase.co' && 
-            SUPABASE_KEY !== 'your-supabase-anon-key') {
+        if (SUPABASE_URL && SUPABASE_URL.includes('supabase.co') && 
+            SUPABASE_KEY && SUPABASE_KEY.length > 20) {
             
             // 実際のSupabaseクライアントを初期化
             const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
             
-            // 接続テスト
-            const { error } = await client.from('prompt_exercise_submissions').select('count', { count: 'exact', head: true });
-            
-            if (error) {
-                throw new Error(`Supabase connection test failed: ${error.message}`);
+            // 接続テスト - より柔軟なチェック
+            try {
+                // auth接続のテスト（テーブル存在チェックの代わり）
+                const { data, error } = await client.auth.getSession();
+                
+                if (error) {
+                    throw new Error(`Supabase auth connection test failed: ${error.message}`);
+                }
+                
+                console.log('Supabase client initialized successfully. Using real Supabase.');
+                useMockMode = false;
+                return client;
+            } catch (connError) {
+                console.warn(`Supabase connection test failed: ${connError.message}`);
+                throw connError;
             }
-            
-            console.log('Supabase client initialized successfully. Using real Supabase.');
-            useMockMode = false;
-            return client;
         } else {
             throw new Error('Invalid Supabase credentials');
         }
@@ -126,8 +146,21 @@ let supabaseClient = null;
 // ページ読み込み時に Supabase クライアントを初期化
 document.addEventListener('DOMContentLoaded', async () => {
     try {
+        console.log('Supabase URL:', SUPABASE_URL.substring(0, 15) + '...');
+        console.log('Supabase Key:', SUPABASE_KEY.substring(0, 5) + '...' + SUPABASE_KEY.substring(SUPABASE_KEY.length - 5));
+        
         supabaseClient = await initSupabase();
         console.log('Supabase client ready:', useMockMode ? 'Mock Mode' : 'Real Supabase');
+        
+        if (!useMockMode) {
+            // 実際のクライアントで認証テスト
+            try {
+                const { data } = await supabaseClient.auth.getUser();
+                console.log('Auth test successful:', data.user ? 'User found' : 'No user (anonymous)');
+            } catch (authError) {
+                console.error('Auth test failed:', authError);
+            }
+        }
     } catch (error) {
         console.error('Supabase initialization error:', error);
         // エラーが発生した場合もモック実装にフォールバック
