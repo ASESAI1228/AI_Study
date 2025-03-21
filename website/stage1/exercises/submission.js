@@ -245,14 +245,18 @@ document.addEventListener('DOMContentLoaded', function() {
     async function saveSubmission(formData, userId, isSubmitted) {
         try {
             // まずSupabaseへの保存を試みる
-            const { data, error } = await supabaseClient.from('exercise_submissions')
-                .insert({
-                    user_id: userId,
-                    exercise_id: formData.exercise_id,
+            const submissionData = {
+                exercise_type: formData.exercise_id,
+                user_id: userId,
+                submission_date: formData.submitted_at,
+                content: {
                     answers: formData.answers,
-                    is_submitted: isSubmitted,
-                    submitted_at: formData.submitted_at
-                });
+                    is_submitted: isSubmitted
+                }
+            };
+            
+            const { data, error } = await supabaseClient.from('prompt_exercise_submissions')
+                .insert(submissionData);
                 
             if (error) {
                 console.warn('Supabase submission error:', error);
@@ -283,11 +287,13 @@ document.addEventListener('DOMContentLoaded', function() {
             // エラー発生時もローカルストレージに保存を試みる
             try {
                 const submission = {
+                    exercise_type: formData.exercise_id,
                     user_id: userId,
-                    exercise_id: formData.exercise_id,
-                    answers: formData.answers,
-                    is_submitted: isSubmitted,
-                    submitted_at: formData.submitted_at
+                    submission_date: formData.submitted_at,
+                    content: {
+                        answers: formData.answers,
+                        is_submitted: isSubmitted
+                    }
                 };
                 
                 const savedSubmissions = JSON.parse(localStorage.getItem('exercise_submissions') || '[]');
@@ -344,10 +350,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const exerciseId = exerciseSubmissionForm.dataset.exerciseId;
             
             // 最新の保存データを取得
-            const result = await supabaseClient.from('exercise_submissions')
+            const result = await supabaseClient.from('prompt_exercise_submissions')
                 .select('*')
                 .eq('user_id', user.id)
-                .eq('exercise_id', exerciseId)
+                .eq('exercise_type', exerciseId)
                 .then(response => {
                     return response;
                 });
@@ -360,11 +366,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (result.data && result.data.length > 0) {
                 // 最新のデータを使用
                 const latestSubmission = result.data.sort((a, b) => 
-                    new Date(b.submitted_at) - new Date(a.submitted_at)
+                    new Date(b.submission_date) - new Date(a.submission_date)
                 )[0];
                 
                 // フォームに値を設定
-                const answers = latestSubmission.answers;
+                const answers = latestSubmission.content.answers;
                 for (const questionId in answers) {
                     const textarea = exerciseSubmissionForm.querySelector(`textarea[data-question-id="${questionId}"]`);
                     if (textarea) {
