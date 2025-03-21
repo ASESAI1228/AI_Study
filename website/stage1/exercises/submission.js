@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 // ユーザーIDの取得（実際の実装ではログイン機能と連携）
-                const user = supabaseClient.auth.user();
+                const { data: { user } } = await supabaseClient.auth.getUser();
                 if (!user) {
                     throw new Error('ユーザー情報が取得できません。');
                 }
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                     
                     // ユーザーIDの取得
-                    const user = supabaseClient.auth.user();
+                    const { data: { user } } = await supabaseClient.auth.getUser();
                     if (!user) {
                         throw new Error('ユーザー情報が取得できません。');
                     }
@@ -219,9 +219,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // ユーザーIDの取得
-            const user = supabaseClient.auth.user();
-            if (!user) {
-                console.warn('ユーザー情報が取得できません。保存データを読み込めません。');
+            try {
+                const { data: { user } } = await supabaseClient.auth.getUser();
+                if (!user) {
+                    console.warn('ユーザー情報が取得できません。保存データを読み込めません。');
+                    return;
+                }
+            } catch (error) {
+                console.warn('ユーザー情報が取得できません。保存データを読み込めません。', error);
                 return;
             }
             
