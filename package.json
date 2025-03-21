@@ -1,0 +1,18 @@
+{
+  "name": "ai_study",
+  "version": "1.0.0",
+  "description": "法務業務におけるAI活用スキルを段階的に習得するための包括的な研修プログラムです。初心者向けの基礎知識から、実践的なAPI活用、アプリケーション開発まで体系的に学べます。",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
