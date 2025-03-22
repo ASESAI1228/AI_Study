@@ -402,6 +402,17 @@
 
     <script src="../../js/main.js"></script>
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script>
+  // Check if we're using file:// protocol instead of http(s)://
+  if (window.location.protocol === 'file:') {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.style.cssText = 'background-color: #f8d7da; color: #721c24; padding: 10px; margin: 10px 0; border-radius: 5px; text-align: center;';
+    errorDiv.innerHTML = '<strong>エラー:</strong> ファイルプロトコル (file://) では環境変数が正しく読み込めません。<code>npm start</code> を実行してサーバー経由でアクセスしてください。';
+    document.body.insertBefore(errorDiv, document.body.firstChild);
+  }
+</script>
+
     <script src="../../env-config.js"></script>
     <script src="../js/supabase-client.js"></script>
     <script src="../js/openai-client.js"></script>
