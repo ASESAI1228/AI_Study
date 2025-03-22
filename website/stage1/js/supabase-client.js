@@ -157,7 +157,10 @@ async function initSupabase() {
         }
         
         // 実際のSupabaseクライアントを初期化
-        const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        if (!window.supabase) {
+            throw new Error('Supabase library not loaded. Make sure the script is included before this file.');
+        }
+        const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         
         // 接続テスト - より柔軟なチェック
         try {
@@ -204,7 +207,7 @@ async function getUserId() {
             return userId;
         } else {
             // 実際のSupabaseから取得
-            const { data } = await supabase.auth.getUser();
+            const { data } = await supabaseClient.auth.getUser();
             return data && data.user ? data.user.id : null;
         }
     } catch (error) {
@@ -235,13 +238,27 @@ async function saveSubmission(submissionData) {
             return { data: submission, error: null };
         } else {
             // 実際のSupabaseに保存
-            const { data, error } = await supabase
-                .from('prompt_exercise_submissions')
-                .insert(submissionData)
-                .select()
-                .single();
-            
-            return { data, error };
+            try {
+                // 提出データの構造を修正 - answersをJSON文字列として保存
+                const modifiedData = {
+                    ...submissionData,
+                    content: JSON.stringify(submissionData.answers),
+                    // answersフィールドを削除（Supabaseのスキーマに合わせる）
+                    answers: undefined
+                };
+                
+                const { data, error } = await supabaseClient
+                    .from('prompt_exercise_submissions')
+                    .insert(modifiedData)
+                    .select()
+                    .single();
+                
+                console.log('Submission saved to Supabase:', data);
+                return { data, error };
+            } catch (saveError) {
+                console.error('Supabase save error:', saveError);
+                throw saveError;
+            }
         }
     } catch (error) {
         console.error('Error saving submission:', error);
@@ -265,7 +282,7 @@ async function saveSubmissionChunk(chunkData) {
             return { data: chunkData, error: null };
         } else {
             // 実際のSupabaseに保存
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('prompt_exercise_submission_chunks')
                 .insert(chunkData)
                 .select();
@@ -303,7 +320,7 @@ async function saveGradingResults(data) {
             return { data: resultWithId, error: null };
         } else {
             // 実際のSupabaseに保存
-            const { data: result, error } = await supabase
+            const { data: result, error } = await supabaseClient
                 .from('exercise_grading_results')
                 .insert({
                     submission_id: data.submission_id,
