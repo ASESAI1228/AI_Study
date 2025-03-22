@@ -13,20 +13,32 @@ app.use(express.static(path.join(__dirname, 'website')));
 // Serve env-config.js at the root path
 app.get('/env-config.js', (req, res) => {
   res.set('Content-Type', 'application/javascript');
+  // IMPORTANT: In a production environment, you should implement proper
+  // authentication and authorization before exposing any credentials
   res.send(`
-    window.SUPABASE___SUPABASE_URL = "${process.env.SUPABASE___SUPABASE_URL}";
-    window.SUPABASE___SUPABASE_ANON_KEY = "${process.env.SUPABASE___SUPABASE_ANON_KEY}";
-    window.OPENAI_API_KEY = "${process.env.OPENAI_API_KEY}";
+    // Supabase credentials should be properly secured in production
+    window.SUPABASE___SUPABASE_URL = "SUPABASE_URL_PLACEHOLDER";
+    window.SUPABASE___SUPABASE_ANON_KEY = "SUPABASE_ANON_KEY_PLACEHOLDER";
+    
+    // OpenAI API key should NEVER be exposed to the client
+    // Server-side proxy should be used instead
+    window.OPENAI_API_KEY = ""; // Intentionally empty
   `);
 });
 
 // Also serve env-config.js at the website path for relative imports
 app.get('/website/env-config.js', (req, res) => {
   res.set('Content-Type', 'application/javascript');
+  // IMPORTANT: In a production environment, you should implement proper
+  // authentication and authorization before exposing any credentials
   res.send(`
-    window.SUPABASE___SUPABASE_URL = "${process.env.SUPABASE___SUPABASE_URL}";
-    window.SUPABASE___SUPABASE_ANON_KEY = "${process.env.SUPABASE___SUPABASE_ANON_KEY}";
-    window.OPENAI_API_KEY = "${process.env.OPENAI_API_KEY}";
+    // Supabase credentials should be properly secured in production
+    window.SUPABASE___SUPABASE_URL = "SUPABASE_URL_PLACEHOLDER";
+    window.SUPABASE___SUPABASE_ANON_KEY = "SUPABASE_ANON_KEY_PLACEHOLDER";
+    
+    // OpenAI API key should NEVER be exposed to the client
+    // Server-side proxy should be used instead
+    window.OPENAI_API_KEY = ""; // Intentionally empty
   `);
 });
 
