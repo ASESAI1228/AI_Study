@@ -100,6 +100,26 @@ document.addEventListener('DOMContentLoaded', function() {
                     gradingProgressElement.remove();
                     displayGradingResults(gradingResult, exerciseId);
                     
+                    // 採点結果をSupabaseに保存
+                    try {
+                        const { error: gradingError } = await supabaseClient.saveGradingResults({
+                            submission_id: result.data.id,
+                            grading_results: gradingResult
+                        });
+                        
+                        if (gradingError) {
+                            console.error('Failed to save grading results:', gradingError);
+                            // Fallback to localStorage
+                            localStorage.setItem(`grading_${result.data.id}`, JSON.stringify(gradingResult));
+                        } else {
+                            console.log('Grading results saved successfully');
+                        }
+                    } catch (gradingStoreError) {
+                        console.error('Error saving grading results:', gradingStoreError);
+                        // Fallback to localStorage
+                        localStorage.setItem(`grading_${result.data.id}`, JSON.stringify(gradingResult));
+                    }
+                    
                 } catch (gradingError) {
                     console.error('採点エラー:', gradingError);
                     showMessage(`採点中にエラーが発生しました: ${gradingError.message}`, 'error');
