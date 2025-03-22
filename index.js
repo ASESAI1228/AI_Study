@@ -17,12 +17,12 @@ app.get('/env-config.js', (req, res) => {
   // authentication and authorization before exposing any credentials
   res.send(`
     // Supabase credentials should be properly secured in production
-    window.SUPABASE___SUPABASE_URL = "SUPABASE_URL_PLACEHOLDER";
-    window.SUPABASE___SUPABASE_ANON_KEY = "SUPABASE_ANON_KEY_PLACEHOLDER";
+    window.SUPABASE___SUPABASE_URL = "${process.env.SUPABASE___SUPABASE_URL || ''}";
+    window.SUPABASE___SUPABASE_ANON_KEY = "${process.env.SUPABASE___SUPABASE_ANON_KEY || ''}";
     
     // OpenAI API key should NEVER be exposed to the client
     // Server-side proxy should be used instead
-    window.OPENAI_API_KEY = ""; // Intentionally empty
+    window.OPENAI_API_KEY = "${process.env.OPENAI_API_KEY || ''}"; // For development only
   `);
 });
 
@@ -33,12 +33,12 @@ app.get('/website/env-config.js', (req, res) => {
   // authentication and authorization before exposing any credentials
   res.send(`
     // Supabase credentials should be properly secured in production
-    window.SUPABASE___SUPABASE_URL = "SUPABASE_URL_PLACEHOLDER";
-    window.SUPABASE___SUPABASE_ANON_KEY = "SUPABASE_ANON_KEY_PLACEHOLDER";
+    window.SUPABASE___SUPABASE_URL = "${process.env.SUPABASE___SUPABASE_URL || ''}";
+    window.SUPABASE___SUPABASE_ANON_KEY = "${process.env.SUPABASE___SUPABASE_ANON_KEY || ''}";
     
     // OpenAI API key should NEVER be exposed to the client
     // Server-side proxy should be used instead
-    window.OPENAI_API_KEY = ""; // Intentionally empty
+    window.OPENAI_API_KEY = "${process.env.OPENAI_API_KEY || ''}"; // For development only
   `);
 });
 

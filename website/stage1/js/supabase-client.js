@@ -143,7 +143,7 @@ async function initSupabase() {
             const errorDiv = document.createElement('div');
             errorDiv.className = 'error-message';
             errorDiv.style.cssText = 'background-color: #f8d7da; color: #721c24; padding: 10px; margin: 10px 0; border-radius: 5px; text-align: center;';
-            errorDiv.innerHTML = '<strong>注意:</strong> Supabase接続情報が設定されていません。ローカルストレージモードで動作します。本番環境では <code>npm start</code> を実行して環境変数を読み込んでください。';
+            errorDiv.innerHTML = '<strong>注意:</strong> Supabase接続情報が設定されていません。ローカルストレージモードで動作します。本番環境では <code>npm start</code> を実行して環境変数を読み込んでください。<br><strong>サーバーからのアクセス URL:</strong> <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a>';
             
             // ページの先頭に挿入
             setTimeout(() => {
