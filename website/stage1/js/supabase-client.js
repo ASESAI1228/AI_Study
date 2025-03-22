@@ -5,8 +5,12 @@
 
 // Supabase接続情報
 // 本番環境では環境変数、テスト環境では直接設定された値を使用
-const SUPABASE_URL = window.SUPABASE___SUPABASE_URL || 'https://your-supabase-url.supabase.co';
-const SUPABASE_KEY = window.SUPABASE___SUPABASE_ANON_KEY || 'your-supabase-anon-key';
+const SUPABASE_URL = window.SUPABASE___SUPABASE_URL || '';
+const SUPABASE_KEY = window.SUPABASE___SUPABASE_ANON_KEY || '';
+
+// 環境変数が設定されているかチェック
+const hasValidCredentials = SUPABASE_URL && SUPABASE_URL.includes('supabase.co') && 
+                           SUPABASE_KEY && SUPABASE_KEY.length > 20;
 
 // モックモードフラグ（Supabaseへの実際の接続ができない場合にローカルストレージを使用）
 let useMockMode = false;
@@ -119,31 +123,57 @@ async function initSupabase() {
     console.log('Initializing Supabase client...');
     
     try {
-        // Supabase URLとキーが有効な値か確認
-        if (SUPABASE_URL && SUPABASE_URL.includes('supabase.co') && 
-            SUPABASE_KEY && SUPABASE_KEY.length > 20) {
-            
-            // 実際のSupabaseクライアントを初期化
-            const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-            
-            // 接続テスト - より柔軟なチェック
-            try {
-                // auth接続のテスト（テーブル存在チェックの代わり）
-                const { data, error } = await client.auth.getSession();
-                
-                if (error) {
-                    throw new Error(`Supabase auth connection test failed: ${error.message}`);
-                }
-                
-                console.log('Supabase client initialized successfully. Using real Supabase.');
-                useMockMode = false;
-                return client;
-            } catch (connError) {
-                console.warn(`Supabase connection test failed: ${connError.message}`);
-                throw connError;
-            }
+        // 環境変数の状態をログに出力（デバッグ用）
+        if (SUPABASE_URL) {
+            console.log('Supabase URL:', SUPABASE_URL.substring(0, 15) + '...');
         } else {
-            throw new Error('Invalid Supabase credentials');
+            console.warn('Supabase URL is not defined. Check your .env file and server setup.');
+        }
+        
+        if (SUPABASE_KEY) {
+            console.log('Supabase Key:', SUPABASE_KEY.substring(0, 5) + '...' + 
+                (SUPABASE_KEY.length > 10 ? SUPABASE_KEY.substring(SUPABASE_KEY.length - 5) : ''));
+        } else {
+            console.warn('Supabase Key is not defined. Check your .env file and server setup.');
+        }
+        
+        // 環境変数が有効かチェック
+        if (!hasValidCredentials) {
+            // 環境変数が設定されていない場合の詳細なエラーメッセージ
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.style.cssText = 'background-color: #f8d7da; color: #721c24; padding: 10px; margin: 10px 0; border-radius: 5px; text-align: center;';
+            errorDiv.innerHTML = '<strong>注意:</strong> Supabase接続情報が設定されていません。ローカルストレージモードで動作します。本番環境では <code>npm start</code> を実行して環境変数を読み込んでください。';
+            
+            // ページの先頭に挿入
+            setTimeout(() => {
+                const mainContent = document.querySelector('.content-section') || document.body;
+                if (mainContent && !document.querySelector('.error-message')) {
+                    mainContent.insertBefore(errorDiv, mainContent.firstChild);
+                }
+            }, 1000);
+            
+            throw new Error('Invalid Supabase credentials. Using mock mode.');
+        }
+        
+        // 実際のSupabaseクライアントを初期化
+        const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        
+        // 接続テスト - より柔軟なチェック
+        try {
+            // auth接続のテスト
+            const { data, error } = await client.auth.getSession();
+            
+            if (error) {
+                throw new Error(`Supabase auth connection test failed: ${error.message}`);
+            }
+            
+            console.log('Supabase client initialized successfully. Using real Supabase.');
+            useMockMode = false;
+            return client;
+        } catch (connError) {
+            console.warn(`Supabase connection test failed: ${connError.message}`);
+            throw connError;
         }
     } catch (error) {
         console.warn(`Failed to initialize Supabase client: ${error.message}. Falling back to mock implementation.`);
