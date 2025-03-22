@@ -241,6 +241,14 @@
                 <p>研修開始から2週間以内</p>
 
                 <div class="exercise-form-container">
+                    <div class="practice-notice">
+                        <div class="notice-icon"><i class="fas fa-exclamation-circle"></i></div>
+                        <div class="notice-content">
+                            <h3>練習用フォーム</h3>
+                            <p>これは<strong>練習用</strong>の入力フォームです。実際に課題を提出する場合は、ページ下部の「課題を提出する」ボタンをクリックしてください。</p>
+                        </div>
+                    </div>
+                    
                     <div class="exercise-selector">
                         <label for="exercise-select">演習を選択してください：</label>
                         <select id="exercise-select" name="exercise_type">
@@ -521,10 +529,7 @@
                         </div>
                         
                         <div class="form-actions">
-                            <div class="note">
-                                <p><strong>注意:</strong> ここには練習用の入力フォームがあります。実際の課題提出は下部の「課題を提出する」ボタンから行ってください。</p>
-                            </div>
-                            <button type="button" id="practice-exercise" class="btn-secondary">入力内容を確認</button>
+                            <button type="button" id="practice-exercise" class="btn-secondary">練習内容を保存</button>
                             <div id="submission-status" class="status-message"></div>
                         </div>
                     </form>

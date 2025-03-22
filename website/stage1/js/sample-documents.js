@@ -27,39 +27,57 @@ function openSampleTab(event, tabName) {
  * サンプルテキストをクリップボードにコピー
  * @param {string} elementId - コピー対象のテキスト要素のID
  */
-function copySampleText(elementId) {
+async function copySampleText(elementId) {
     const textElement = document.getElementById(elementId);
     if (!textElement) return;
     
-    // テキストを選択
-    const range = document.createRange();
-    range.selectNode(textElement);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
+    // ファイルパスをIDから特定
+    let filePath = '';
+    if (elementId === 'contract-content') {
+        filePath = '../samples/contract-sample.txt';
+    } else if (elementId === 'legal-question-content') {
+        filePath = '../samples/legal-question-sample.txt';
+    } else if (elementId === 'case-law-content') {
+        filePath = '../samples/case-law-sample.txt';
+    }
     
     try {
-        // クリップボードにコピー
-        const successful = document.execCommand('copy');
+        // ファイルの完全なテキストを取得
+        const response = await fetch(filePath);
+        if (!response.ok) {
+            throw new Error(`ファイルの取得に失敗しました: ${response.status}`);
+        }
+        
+        const fullText = await response.text();
+        
+        // モダンなクリップボードAPIを使用
+        if (navigator.clipboard) {
+            await navigator.clipboard.writeText(fullText);
+        } else {
+            // フォールバック: 一時的な要素に全文を入れてコピー
+            const tempElement = document.createElement('textarea');
+            tempElement.value = fullText;
+            document.body.appendChild(tempElement);
+            tempElement.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempElement);
+        }
         
         // コピー成功メッセージを表示
-        if (successful) {
-            const copyButton = document.querySelector(`button[onclick="copySampleText('${elementId}')"]`);
-            if (copyButton) {
-                const originalText = copyButton.textContent;
-                copyButton.textContent = 'コピー完了！';
-                
-                // 2秒後に元のテキストに戻す
-                setTimeout(() => {
-                    copyButton.textContent = originalText;
-                }, 2000);
-            }
+        const copyButton = document.querySelector(`button[onclick="copySampleText('${elementId}')"]`);
+        if (copyButton) {
+            const originalText = copyButton.textContent;
+            copyButton.textContent = '全文コピー完了！';
+            
+            // 2秒後に元のテキストに戻す
+            setTimeout(() => {
+                copyButton.textContent = originalText;
+            }, 2000);
         }
     } catch (err) {
         console.error('コピーに失敗しました:', err);
+        alert('コピーに失敗しました: ' + err.message);
     }
-    
-    // 選択を解除
-    window.getSelection().removeAllRanges();
 }
 
 // モダンなクリップボードAPIを使用したコピー関数（フォールバック用）
