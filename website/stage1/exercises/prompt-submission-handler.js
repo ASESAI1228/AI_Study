@@ -147,12 +147,15 @@ function validateForm() {
     
     visibleTextareas.forEach(textarea => {
         const minChars = parseInt(textarea.getAttribute('data-min-chars')) || 0;
+        const maxChars = parseInt(textarea.getAttribute('data-max-chars')) || 0;
         const errorMessage = textarea.nextElementSibling;
         
-        // 文字数制限を緩和（テスト用）
+        // 文字数制限を緩和（長い文脈入力に対応）
+        // 最小文字数は10文字以下に設定し、最大文字数は無制限に
         const actualMinChars = Math.min(minChars, 10);
         
         if (textarea.value.length < actualMinChars) {
+            errorMessage.textContent = `最低${actualMinChars}文字入力してください。`;
             errorMessage.style.display = 'block';
             isValid = false;
         } else {
