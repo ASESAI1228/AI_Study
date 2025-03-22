@@ -123,7 +123,21 @@
 
     <script src="../../js/main.js"></script>
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-    <script src="/env-config.js"></script>
+    <script>
+      // Fallback for env-config.js when accessed directly via file:// protocol
+      if (window.location.protocol === 'file:') {
+        document.write('<div class="error-banner" style="background-color: #f8d7da; color: #721c24; padding: 10px; margin: 10px 0; border-radius: 5px; text-align: center;">' +
+          '<strong>Warning:</strong> This application requires a server to function properly. Please run <code>npm start</code> from the project root and access via <a href="http://localhost:3000/stage1/exercises/chatgpt-basics-submission.html">http://localhost:3000/stage1/exercises/chatgpt-basics-submission.html</a>' +
+          '</div>');
+      }
+    </script>
+    <script src="/env-config.js" onerror="
+      console.warn('Failed to load env-config.js. Environment variables will not be available.');
+      // Create empty environment variables to prevent errors
+      window.SUPABASE___SUPABASE_URL = '';
+      window.SUPABASE___SUPABASE_ANON_KEY = '';
+      window.OPENAI_API_KEY = '';
+    "></script>
     <script src="../js/supabase-client.js"></script>
     <script src="../js/openai-client.js"></script>
     <script src="submission.js"></script>

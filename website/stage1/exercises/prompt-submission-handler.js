@@ -284,6 +284,13 @@ function displayGradingResults(results, exerciseType) {
 async function submitExercise(event) {
     event.preventDefault();
     
+    // サーバー経由でのアクセスチェック
+    if (typeof isRunningThroughServer === 'function' && !isRunningThroughServer()) {
+        console.error('Server access required. Please run via npm start and access through http://localhost:3000');
+        alert('このアプリケーションはサーバー経由でアクセスする必要があります。プロジェクトルートから `npm start` を実行し、http://localhost:3000 からアクセスしてください。');
+        return;
+    }
+    
     // フォームの検証
     if (!validateForm()) {
         alert('すべての必須項目を入力してください。');

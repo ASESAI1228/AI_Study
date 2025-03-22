@@ -1,4 +1,30 @@
+/**
+ * サーバー経由でアクセスされているかチェック
+ */
+function isRunningThroughServer() {
+    return window.location.protocol !== 'file:';
+}
+
+/**
+ * サーバーアクセス警告を表示
+ */
+function showServerRequiredWarning() {
+    if (!isRunningThroughServer()) {
+        const warningBanner = document.createElement('div');
+        warningBanner.className = 'error-banner';
+        warningBanner.style.cssText = 'background-color: #f8d7da; color: #721c24; padding: 10px; margin: 10px 0; border-radius: 5px; text-align: center;';
+        warningBanner.innerHTML = '<strong>警告:</strong> このアプリケーションは正常に動作するためにサーバーが必要です。プロジェクトルートから <code>npm start</code> を実行し、<a href="http://localhost:3000">http://localhost:3000</a> からアクセスしてください。';
+        
+        // ページの先頭に挿入
+        const mainContent = document.querySelector('.content-section') || document.body;
+        mainContent.insertBefore(warningBanner, mainContent.firstChild);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // サーバーアクセス警告を表示
+    showServerRequiredWarning();
+    
     // FAQ accordion functionality
     const faqItems = document.querySelectorAll('.faq-item');
     
