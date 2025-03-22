@@ -5,8 +5,12 @@
 
 // Supabase接続情報
 // 本番環境では環境変数、テスト環境では直接設定された値を使用
-const SUPABASE_URL = window.SUPABASE___SUPABASE_URL || 'https://your-supabase-url.supabase.co';
-const SUPABASE_KEY = window.SUPABASE___SUPABASE_ANON_KEY || 'your-supabase-anon-key';
+const SUPABASE_URL = window.SUPABASE___SUPABASE_URL || '';
+const SUPABASE_KEY = window.SUPABASE___SUPABASE_ANON_KEY || '';
+
+// 環境変数が設定されているかチェック
+const hasValidCredentials = SUPABASE_URL && SUPABASE_URL.includes('supabase.co') && 
+                           SUPABASE_KEY && SUPABASE_KEY.length > 20;
 
 // モックモードフラグ（Supabaseへの実際の接続ができない場合にローカルストレージを使用）
 let useMockMode = false;
@@ -119,31 +123,57 @@ async function initSupabase() {
     console.log('Initializing Supabase client...');
     
     try {
-        // Supabase URLとキーが有効な値か確認
-        if (SUPABASE_URL && SUPABASE_URL.includes('supabase.co') && 
-            SUPABASE_KEY && SUPABASE_KEY.length > 20) {
-            
-            // 実際のSupabaseクライアントを初期化
-            const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-            
-            // 接続テスト - より柔軟なチェック
-            try {
-                // auth接続のテスト（テーブル存在チェックの代わり）
-                const { data, error } = await client.auth.getSession();
-                
-                if (error) {
-                    throw new Error(`Supabase auth connection test failed: ${error.message}`);
-                }
-                
-                console.log('Supabase client initialized successfully. Using real Supabase.');
-                useMockMode = false;
-                return client;
-            } catch (connError) {
-                console.warn(`Supabase connection test failed: ${connError.message}`);
-                throw connError;
-            }
+        // 環境変数の状態をログに出力（デバッグ用）
+        if (SUPABASE_URL) {
+            console.log('Supabase URL:', SUPABASE_URL.substring(0, 15) + '...');
         } else {
-            throw new Error('Invalid Supabase credentials');
+            console.warn('Supabase URL is not defined. Check your .env file and server setup.');
+        }
+        
+        if (SUPABASE_KEY) {
+            console.log('Supabase Key:', SUPABASE_KEY.substring(0, 5) + '...' + 
+                (SUPABASE_KEY.length > 10 ? SUPABASE_KEY.substring(SUPABASE_KEY.length - 5) : ''));
+        } else {
+            console.warn('Supabase Key is not defined. Check your .env file and server setup.');
+        }
+        
+        // 環境変数が有効かチェック
+        if (!hasValidCredentials) {
+            // 環境変数が設定されていない場合の詳細なエラーメッセージ
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.style.cssText = 'background-color: #f8d7da; color: #721c24; padding: 10px; margin: 10px 0; border-radius: 5px; text-align: center;';
+            errorDiv.innerHTML = '<strong>注意:</strong> Supabase接続情報が設定されていません。ローカルストレージモードで動作します。本番環境では <code>npm start</code> を実行して環境変数を読み込んでください。';
+            
+            // ページの先頭に挿入
+            setTimeout(() => {
+                const mainContent = document.querySelector('.content-section') || document.body;
+                if (mainContent && !document.querySelector('.error-message')) {
+                    mainContent.insertBefore(errorDiv, mainContent.firstChild);
+                }
+            }, 1000);
+            
+            throw new Error('Invalid Supabase credentials. Using mock mode.');
+        }
+        
+        // 実際のSupabaseクライアントを初期化
+        const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        
+        // 接続テスト - より柔軟なチェック
+        try {
+            // auth接続のテスト
+            const { data, error } = await client.auth.getSession();
+            
+            if (error) {
+                throw new Error(`Supabase auth connection test failed: ${error.message}`);
+            }
+            
+            console.log('Supabase client initialized successfully. Using real Supabase.');
+            useMockMode = false;
+            return client;
+        } catch (connError) {
+            console.warn(`Supabase connection test failed: ${connError.message}`);
+            throw connError;
         }
     } catch (error) {
         console.warn(`Failed to initialize Supabase client: ${error.message}. Falling back to mock implementation.`);
@@ -156,6 +186,97 @@ async function initSupabase() {
 
 // グローバル変数として supabase クライアントを保持
 let supabaseClient = null;
+
+/**
+ * ユーザーIDを取得する関数
+ * 認証済みユーザーまたは匿名ユーザーID
+ * @returns {Promise<string>} ユーザーID
+ */
+async function getUserId() {
+    try {
+        if (useMockMode) {
+            // モックモード: ローカルストレージのIDを返す
+            let userId = localStorage.getItem('anonymous_user_id');
+            if (!userId) {
+                userId = 'anon_' + Math.random().toString(36).substring(2, 15);
+                localStorage.setItem('anonymous_user_id', userId);
+            }
+            return userId;
+        } else {
+            // 実際のSupabaseから取得
+            const { data } = await supabase.auth.getUser();
+            return data && data.user ? data.user.id : null;
+        }
+    } catch (error) {
+        console.error('Failed to get user ID:', error);
+        throw error;
+    }
+}
+
+/**
+ * 課題提出を保存する関数
+ * @param {Object} submissionData - 提出データ
+ * @returns {Promise<Object>} - 保存結果
+ */
+async function saveSubmission(submissionData) {
+    console.log('Saving submission:', submissionData);
+    
+    try {
+        if (useMockMode) {
+            // モックモード: ローカルストレージに保存
+            const submissionId = 'submission_' + Date.now();
+            const submission = {
+                id: submissionId,
+                ...submissionData,
+                created_at: new Date().toISOString()
+            };
+            
+            localStorage.setItem(`submission_${submissionId}`, JSON.stringify(submission));
+            return { data: submission, error: null };
+        } else {
+            // 実際のSupabaseに保存
+            const { data, error } = await supabase
+                .from('prompt_exercise_submissions')
+                .insert(submissionData)
+                .select()
+                .single();
+            
+            return { data, error };
+        }
+    } catch (error) {
+        console.error('Error saving submission:', error);
+        return { data: null, error };
+    }
+}
+
+/**
+ * 大きな提出データのチャンクを保存する関数
+ * @param {Object} chunkData - チャンクデータ
+ * @returns {Promise<Object>} - 保存結果
+ */
+async function saveSubmissionChunk(chunkData) {
+    console.log('Saving submission chunk:', chunkData);
+    
+    try {
+        if (useMockMode) {
+            // モックモード: ローカルストレージに保存
+            const chunkId = `chunk_${chunkData.submission_id}_${chunkData.chunk_index}`;
+            localStorage.setItem(chunkId, JSON.stringify(chunkData));
+            return { data: chunkData, error: null };
+        } else {
+            // 実際のSupabaseに保存
+            const { data, error } = await supabase
+                .from('prompt_exercise_submission_chunks')
+                .insert(chunkData)
+                .select();
+            
+            return { data, error };
+        }
+    } catch (error) {
+        console.error('Error saving submission chunk:', error);
+        return { data: null, error };
+    }
+}
 
 /**
  * 採点結果を保存する関数
@@ -211,6 +332,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('Supabase client ready:', useMockMode ? 'Mock Mode' : 'Real Supabase');
         
         // クライアントにメソッドを追加
+        supabaseClient.getUserId = async function() {
+            return getUserId();
+        };
+        
+        supabaseClient.saveSubmission = async function(data) {
+            return saveSubmission(data);
+        };
+        
+        supabaseClient.saveSubmissionChunk = async function(data) {
+            return saveSubmissionChunk(data);
+        };
+        
         supabaseClient.saveGradingResults = async function(data) {
             return saveGradingResults(data);
         };
@@ -228,5 +361,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Supabase initialization error:', error);
         // エラーが発生した場合もモック実装にフォールバック
         supabaseClient = createMockClient();
+        
+        // モッククライアントにもメソッドを追加
+        supabaseClient.getUserId = async function() {
+            return getUserId();
+        };
+        
+        supabaseClient.saveSubmission = async function(data) {
+            return saveSubmission(data);
+        };
+        
+        supabaseClient.saveSubmissionChunk = async function(data) {
+            return saveSubmissionChunk(data);
+        };
+        
+        supabaseClient.saveGradingResults = async function(data) {
+            return saveGradingResults(data);
+        };
     }
 });

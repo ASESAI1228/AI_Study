@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const exerciseForm = document.getElementById('prompt-exercise-form');
     const exerciseSelect = document.getElementById('exercise-select');
     const formSections = document.querySelectorAll('.exercise-form-section');
-    const submitButton = document.getElementById('submit-exercise');
+    const practiceButton = document.getElementById('practice-exercise');
     const statusMessage = document.getElementById('submission-status');
 
     // 初期表示時は最初の演習フォームのみ表示
@@ -31,6 +31,33 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 section.style.display = 'none';
             }
+        });
+    }
+    
+    // 「入力内容を確認」ボタンの処理
+    if (practiceButton) {
+        practiceButton.addEventListener('click', () => {
+            // フォームデータの収集
+            const formData = new FormData(exerciseForm);
+            const selectedExercise = exerciseSelect.value;
+            
+            // ローカルストレージに一時保存
+            const tempData = {};
+            for (const [key, value] of formData.entries()) {
+                tempData[key] = value;
+            }
+            
+            localStorage.setItem('prompt_practice_data', JSON.stringify({
+                exerciseType: selectedExercise,
+                formData: tempData
+            }));
+            
+            // 提出ページへリダイレクト
+            window.location.href = `prompt-engineering-submission.html?exercise=${selectedExercise}`;
+            
+            // 確認メッセージ
+            statusMessage.textContent = '入力内容を保存しました。提出ページに移動します...';
+            statusMessage.className = 'status-message info';
         });
     }
 

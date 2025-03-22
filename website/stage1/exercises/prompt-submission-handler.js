@@ -147,12 +147,15 @@ function validateForm() {
     
     visibleTextareas.forEach(textarea => {
         const minChars = parseInt(textarea.getAttribute('data-min-chars')) || 0;
+        const maxChars = parseInt(textarea.getAttribute('data-max-chars')) || 0;
         const errorMessage = textarea.nextElementSibling;
         
-        // 文字数制限を緩和（テスト用）
+        // 文字数制限を緩和（長い文脈入力に対応）
+        // 最小文字数は10文字以下に設定し、最大文字数は無制限に
         const actualMinChars = Math.min(minChars, 10);
         
         if (textarea.value.length < actualMinChars) {
+            errorMessage.textContent = `最低${actualMinChars}文字入力してください。`;
             errorMessage.style.display = 'block';
             isValid = false;
         } else {
@@ -526,6 +529,71 @@ function loadSavedProgress(exerciseType) {
         console.error('読み込みエラー:', error);
     }
 }
+/**
+ * 練習データのロード
+ */
+function loadPracticeData() {
+    const practiceData = localStorage.getItem('prompt_practice_data');
+    if (!practiceData) return;
+    
+    try {
+        const parsedData = JSON.parse(practiceData);
+        const exerciseType = parsedData.exerciseType;
+        const formData = parsedData.formData;
+        
+        // 演習タイプの選択
+        if (exerciseSelect && exerciseType) {
+            // 演習タイプをプロンプト演習形式に変換
+            const mappedExerciseType = exerciseType === 'exercise1' ? 'prompt-engineering-ex1' :
+                                      exerciseType === 'exercise2' ? 'prompt-engineering-ex2' :
+                                      exerciseType === 'exercise3' ? 'prompt-engineering-ex3' :
+                                      exerciseType === 'exercise4' ? 'prompt-engineering-ex4' : null;
+            
+            if (mappedExerciseType) {
+                exerciseSelect.value = mappedExerciseType;
+                switchExerciseType(mappedExerciseType);
+            }
+        }
+        
+        // フォームデータの適用
+        if (formData) {
+            for (const key in formData) {
+                // 練習フォームのフィールド名から提出フォームのフィールド名へのマッピング
+                const mappedKey = key.replace('exercise1_', '').replace('exercise2_', '').replace('exercise3_', '').replace('exercise4_', '');
+                
+                const textarea = document.querySelector(`textarea[data-question-id="${mappedKey}"]`);
+                if (textarea) {
+                    textarea.value = formData[key];
+                    
+                    // 文字カウンターの更新
+                    const counter = textarea.nextElementSibling?.nextElementSibling;
+                    if (counter && counter.classList.contains('character-counter')) {
+                        updateCharacterCount(textarea, counter, textarea.getAttribute('data-max-chars'));
+                    }
+                }
+            }
+        }
+        
+        // 使用済みデータをクリア
+        localStorage.removeItem('prompt_practice_data');
+        
+        // 練習データが読み込まれたことを通知
+        const statusMessage = document.querySelector('.status-message');
+        if (statusMessage) {
+            statusMessage.textContent = '練習フォームからのデータを読み込みました。内容を確認して提出してください。';
+            statusMessage.className = 'status-message info';
+            
+            // 3秒後にメッセージを消す
+            setTimeout(() => {
+                statusMessage.textContent = '';
+                statusMessage.className = 'status-message';
+            }, 3000);
+        }
+    } catch (error) {
+        console.error('練習データの読み込みに失敗しました:', error);
+    }
+}
+
 
 // イベントリスナーの設定
 document.addEventListener('DOMContentLoaded', () => {
@@ -556,4 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (initialExerciseType) {
         loadSavedProgress(initialExerciseType);
     }
+    
+    // 練習データのロード
+    loadPracticeData();
 });
