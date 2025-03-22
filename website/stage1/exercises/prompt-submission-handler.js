@@ -327,7 +327,7 @@ async function submitExercise(event) {
         const submissionData = {
             user_id: userId,
             exercise_id: formData.exerciseType,
-            answers: formData.answers,
+            content: JSON.stringify(formData.answers), // answersをJSON文字列としてcontentフィールドに保存
             submitted_at: new Date().toISOString()
         };
         
@@ -351,7 +351,8 @@ async function submitExercise(event) {
             // 最初のチャンクで提出を作成
             const firstChunkData = {
                 ...submissionData,
-                answers: { _chunk: 1, _total: chunks.length, data: chunks[0] },
+                // answersフィールドを削除し、content_chunkフィールドを使用
+                content_chunk: { _chunk: 1, _total: chunks.length, data: chunks[0] }
             };
             
             const { data, error } = await supabaseClient.saveSubmission(firstChunkData);
