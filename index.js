@@ -10,7 +10,18 @@ require('dotenv').config();
 app.use(express.static(path.join(__dirname, 'website')));
 
 // Inject environment variables
+// Serve env-config.js at the root path
 app.get('/env-config.js', (req, res) => {
+  res.set('Content-Type', 'application/javascript');
+  res.send(`
+    window.SUPABASE___SUPABASE_URL = "${process.env.SUPABASE___SUPABASE_URL}";
+    window.SUPABASE___SUPABASE_ANON_KEY = "${process.env.SUPABASE___SUPABASE_ANON_KEY}";
+    window.OPENAI_API_KEY = "${process.env.OPENAI_API_KEY}";
+  `);
+});
+
+// Also serve env-config.js at the website path for relative imports
+app.get('/website/env-config.js', (req, res) => {
   res.set('Content-Type', 'application/javascript');
   res.send(`
     window.SUPABASE___SUPABASE_URL = "${process.env.SUPABASE___SUPABASE_URL}";
