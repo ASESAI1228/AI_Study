@@ -158,6 +158,97 @@ async function initSupabase() {
 let supabaseClient = null;
 
 /**
+ * ユーザーIDを取得する関数
+ * 認証済みユーザーまたは匿名ユーザーID
+ * @returns {Promise<string>} ユーザーID
+ */
+async function getUserId() {
+    try {
+        if (useMockMode) {
+            // モックモード: ローカルストレージのIDを返す
+            let userId = localStorage.getItem('anonymous_user_id');
+            if (!userId) {
+                userId = 'anon_' + Math.random().toString(36).substring(2, 15);
+                localStorage.setItem('anonymous_user_id', userId);
+            }
+            return userId;
+        } else {
+            // 実際のSupabaseから取得
+            const { data } = await supabase.auth.getUser();
+            return data && data.user ? data.user.id : null;
+        }
+    } catch (error) {
+        console.error('Failed to get user ID:', error);
+        throw error;
+    }
+}
+
+/**
+ * 課題提出を保存する関数
+ * @param {Object} submissionData - 提出データ
+ * @returns {Promise<Object>} - 保存結果
+ */
+async function saveSubmission(submissionData) {
+    console.log('Saving submission:', submissionData);
+    
+    try {
+        if (useMockMode) {
+            // モックモード: ローカルストレージに保存
+            const submissionId = 'submission_' + Date.now();
+            const submission = {
+                id: submissionId,
+                ...submissionData,
+                created_at: new Date().toISOString()
+            };
+            
+            localStorage.setItem(`submission_${submissionId}`, JSON.stringify(submission));
+            return { data: submission, error: null };
+        } else {
+            // 実際のSupabaseに保存
+            const { data, error } = await supabase
+                .from('prompt_exercise_submissions')
+                .insert(submissionData)
+                .select()
+                .single();
+            
+            return { data, error };
+        }
+    } catch (error) {
+        console.error('Error saving submission:', error);
+        return { data: null, error };
+    }
+}
+
+/**
+ * 大きな提出データのチャンクを保存する関数
+ * @param {Object} chunkData - チャンクデータ
+ * @returns {Promise<Object>} - 保存結果
+ */
+async function saveSubmissionChunk(chunkData) {
+    console.log('Saving submission chunk:', chunkData);
+    
+    try {
+        if (useMockMode) {
+            // モックモード: ローカルストレージに保存
+            const chunkId = `chunk_${chunkData.submission_id}_${chunkData.chunk_index}`;
+            localStorage.setItem(chunkId, JSON.stringify(chunkData));
+            return { data: chunkData, error: null };
+        } else {
+            // 実際のSupabaseに保存
+            const { data, error } = await supabase
+                .from('prompt_exercise_submission_chunks')
+                .insert(chunkData)
+                .select();
+            
+            return { data, error };
+        }
+    } catch (error) {
+        console.error('Error saving submission chunk:', error);
+        return { data: null, error };
+    }
+}
+
+/**
  * 採点結果を保存する関数
  * @param {Object} data - 保存するデータ
  * @param {string} data.submission_id - 提出ID
@@ -211,6 +302,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('Supabase client ready:', useMockMode ? 'Mock Mode' : 'Real Supabase');
         
         // クライアントにメソッドを追加
+        supabaseClient.getUserId = async function() {
+            return getUserId();
+        };
+        
+        supabaseClient.saveSubmission = async function(data) {
+            return saveSubmission(data);
+        };
+        
+        supabaseClient.saveSubmissionChunk = async function(data) {
+            return saveSubmissionChunk(data);
+        };
+        
         supabaseClient.saveGradingResults = async function(data) {
             return saveGradingResults(data);
         };
@@ -228,5 +331,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Supabase initialization error:', error);
         // エラーが発生した場合もモック実装にフォールバック
         supabaseClient = createMockClient();
+        
+        // モッククライアントにもメソッドを追加
+        supabaseClient.getUserId = async function() {
+            return getUserId();
+        };
+        
+        supabaseClient.saveSubmission = async function(data) {
+            return saveSubmission(data);
+        };
+        
+        supabaseClient.saveSubmissionChunk = async function(data) {
+            return saveSubmissionChunk(data);
+        };
+        
+        supabaseClient.saveGradingResults = async function(data) {
+            return saveGradingResults(data);
+        };
     }
 });
