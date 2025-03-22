@@ -93,6 +93,20 @@ function createMockClient() {
                     error: null
                 });
             }
+        },
+        saveGradingResults: (data) => {
+            console.log('[Mock] Saving grading results:', data);
+            // モック実装でローカルストレージに保存
+            const storageKey = 'mock_grading_results';
+            const existingData = JSON.parse(localStorage.getItem(storageKey) || '[]');
+            const resultWithId = {
+                ...data,
+                id: Date.now(),
+                created_at: new Date().toISOString()
+            };
+            existingData.push(resultWithId);
+            localStorage.setItem(storageKey, JSON.stringify(existingData));
+            return Promise.resolve({ data: resultWithId, error: null });
         }
     };
 }
@@ -143,6 +157,50 @@ async function initSupabase() {
 // グローバル変数として supabase クライアントを保持
 let supabaseClient = null;
 
+/**
+ * 採点結果を保存する関数
+ * @param {Object} data - 保存するデータ
+ * @param {string} data.submission_id - 提出ID
+ * @param {Object} data.grading_results - 採点結果
+ * @returns {Promise<Object>} - 保存結果
+ */
+async function saveGradingResults(data) {
+    console.log('Saving grading results:', data);
+    
+    try {
+        if (useMockMode) {
+            // モックモード: ローカルストレージに保存
+            const storageKey = 'supabase_grading_results';
+            const existingData = JSON.parse(localStorage.getItem(storageKey) || '[]');
+            const resultWithId = {
+                ...data,
+                id: Date.now(),
+                created_at: new Date().toISOString()
+            };
+            existingData.push(resultWithId);
+            localStorage.setItem(storageKey, JSON.stringify(existingData));
+            return { data: resultWithId, error: null };
+        } else {
+            // 実際のSupabaseに保存
+            const { data: result, error } = await supabase
+                .from('exercise_grading_results')
+                .insert({
+                    submission_id: data.submission_id,
+                    score: data.grading_results.overallScore,
+                    passing_threshold: data.grading_results.passingThreshold,
+                    passed: data.grading_results.passed,
+                    feedback: data.grading_results.feedbacks,
+                    created_at: new Date().toISOString()
+                });
+            
+            return { data: result, error };
+        }
+    } catch (error) {
+        console.error('Error saving grading results:', error);
+        return { data: null, error };
+    }
+}
+
 // ページ読み込み時に Supabase クライアントを初期化
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -151,6 +209,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         supabaseClient = await initSupabase();
         console.log('Supabase client ready:', useMockMode ? 'Mock Mode' : 'Real Supabase');
+        
+        // クライアントにメソッドを追加
+        supabaseClient.saveGradingResults = async function(data) {
+            return saveGradingResults(data);
+        };
         
         if (!useMockMode) {
             // 実際のクライアントで認証テスト
