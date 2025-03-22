@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const exerciseSubmissionForm = document.getElementById('exerciseSubmissionForm');
     const saveProgressButton = document.getElementById('saveProgress');
     
+    // サーバー経由でのアクセスチェック
+    if (typeof isRunningThroughServer === 'function' && !isRunningThroughServer()) {
+        console.error('Server access required. Please run via npm start and access through http://localhost:3000');
+        showMessage('このアプリケーションはサーバー経由でアクセスする必要があります。プロジェクトルートから `npm start` を実行し、http://localhost:3000 からアクセスしてください。', 'error');
+    }
+    
     if (exerciseSubmissionForm) {
         // 文字数カウンター機能の追加
         setupCharacterCounters();

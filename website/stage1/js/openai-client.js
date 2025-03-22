@@ -4,10 +4,21 @@
  */
 
 // 本番環境では環境変数、テスト環境ではハードコードされた値を使用
-const OPENAI_API_KEY = window.OPENAI_API_KEY || 'sk-test-key-replace-with-real-key-in-env';
-
-// モックモードフラグ（OpenAI APIが利用できない場合）
+let OPENAI_API_KEY = '';
 let useOpenAIMockMode = false;
+
+try {
+  // Validate API key format to prevent URL validation errors
+  if (window.OPENAI_API_KEY && typeof window.OPENAI_API_KEY === 'string' && window.OPENAI_API_KEY.startsWith('sk-')) {
+    OPENAI_API_KEY = window.OPENAI_API_KEY;
+  } else {
+    console.warn('Invalid OpenAI API key format. Using mock mode.');
+    useOpenAIMockMode = true;
+  }
+} catch (error) {
+  console.error('Error initializing OpenAI credentials:', error);
+  useOpenAIMockMode = true;
+}
 
 // グローバル変数としてOpenAIクライアントを保持
 let openaiClient = null;

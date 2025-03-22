@@ -5,11 +5,29 @@
 
 // Supabase接続情報
 // 本番環境では環境変数、テスト環境では直接設定された値を使用
-const SUPABASE_URL = window.SUPABASE___SUPABASE_URL || 'https://your-supabase-url.supabase.co';
-const SUPABASE_KEY = window.SUPABASE___SUPABASE_ANON_KEY || 'your-supabase-anon-key';
-
-// モックモードフラグ（Supabaseへの実際の接続ができない場合にローカルストレージを使用）
+let SUPABASE_URL = '';
+let SUPABASE_KEY = '';
 let useMockMode = false;
+
+try {
+  // Validate URL format to prevent "Unlisted TLDs in URLs are not supported" error
+  if (window.SUPABASE___SUPABASE_URL && window.SUPABASE___SUPABASE_URL.match(/^https:\/\/[a-zA-Z0-9-]+\.supabase\.co$/)) {
+    SUPABASE_URL = window.SUPABASE___SUPABASE_URL;
+  } else {
+    console.warn('Invalid Supabase URL format. Using mock mode.');
+    useMockMode = true;
+  }
+  
+  if (window.SUPABASE___SUPABASE_ANON_KEY && window.SUPABASE___SUPABASE_ANON_KEY.length > 10) {
+    SUPABASE_KEY = window.SUPABASE___SUPABASE_ANON_KEY;
+  } else {
+    console.warn('Invalid Supabase key. Using mock mode.');
+    useMockMode = true;
+  }
+} catch (error) {
+  console.error('Error initializing Supabase credentials:', error);
+  useMockMode = true;
+}
 
 /**
  * モッククライアントを作成する関数
